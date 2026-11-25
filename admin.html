@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>UnStuck — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f4ecdb;--card:#fffaf0;--ink:#2a2119;--muted:#6b5a46;--line:#d2bf9c;--brass:#b08a4a;--brass-dark:#7d5d2a;--brass-flat:#c29a55;--soot:#241c15;--cream:#f1e3c4;--verdigris:#3f7067;--red:#8e3b26;--display:'Cinzel',Georgia,serif;--serif:'Lora',Georgia,serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.45 system-ui,sans-serif}
+button,select,a.button{font:inherit;color:inherit;cursor:pointer;border:1px solid var(--line);border-radius:5px;background:var(--card);padding:7px 12px;text-decoration:none;display:inline-block}
+button:hover,a.button:hover{border-color:var(--brass)}
+button[aria-pressed=true],button.primary{background:var(--brass-flat);border-color:var(--brass-dark);color:#21160a;font-weight:650}
+button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--verdigris);outline-offset:2px}
+h1,h2{font-family:var(--display);letter-spacing:.04em;margin:0}
+h2{font-size:16px}
+p{margin:0}
+.muted{color:var(--muted)}
+.mono{font:12px ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--brass-dark)}
+
+header.top{background:var(--soot);color:var(--cream);border-bottom:3px double var(--brass);padding:12px 24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  background-image:radial-gradient(circle,#b08a4a 1.5px,transparent 2px);background-size:26px 8px;background-repeat:repeat-x;background-position:13px 100%}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:20px}
+.brand svg{width:26px;height:26px;color:var(--brass)}
+.brand small{font:12px ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:#c9a462}
+.controls{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+header button,header a.button{background:transparent;border-color:#5d4c38;color:var(--cream)}
+header button:hover,header a.button:hover{background:#3b2e22;border-color:var(--brass)}
+header button[aria-pressed=true]{background:var(--brass-flat);border-color:var(--brass-dark);color:#21160a}
+.divider{width:1px;height:26px;background:#5d4c38;margin:0 4px}
+
+main{max-width:1240px;margin:0 auto;padding:24px clamp(14px,3vw,32px) 60px;display:grid;gap:18px}
+.banner{border:1px solid #c9a462;background:#f6ead0;border-radius:6px;padding:10px 14px;font-size:14px}
+.banner.error{border-color:var(--red);background:#fbefe8;color:var(--red)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px;min-width:0;
+  background-image:linear-gradient(var(--brass),var(--brass)),linear-gradient(var(--brass),var(--brass)),linear-gradient(var(--brass),var(--brass)),linear-gradient(var(--brass),var(--brass));
+  background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-repeat:no-repeat;background-position:6px 6px,6px 6px,calc(100% - 6px) calc(100% - 6px),calc(100% - 6px) calc(100% - 6px)}
+.card-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.kpi{padding:14px 16px}
+.kpi strong{display:block;font:700 30px var(--display);color:var(--brass-dark);line-height:1.1;margin-top:4px}
+.kpi small{color:var(--muted)}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font:11px ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:0 8px 6px;border-bottom:1px solid var(--line)}
+td{padding:7px 8px;border-bottom:1px solid #ecdfc4;vertical-align:middle}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{height:8px;background:#eadcbf;border-radius:4px;overflow:hidden;min-width:60px}
+.bar span{display:block;height:100%;background:var(--brass-flat)}
+.bar.green span{background:var(--verdigris)}
+.empty{color:var(--muted);font-style:italic;padding:10px 0}
+.chart{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.map-controls{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.map-stage{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:4px;background:#e9dfca;margin-top:12px}
+.map-stage iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;pointer-events:none;background:white}
+.map-stage canvas{position:absolute;left:0;top:0;pointer-events:none}
+.map-note{font-size:13px;margin-top:8px}
+.feed{list-style:none;margin:0;padding:0;display:grid;gap:2px;max-height:360px;overflow:auto;font-size:13.5px}
+.feed li{display:grid;grid-template-columns:72px 58px 1fr;gap:8px;padding:5px 2px;border-bottom:1px solid #ecdfc4}
+.tag{font:11px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.06em;color:var(--brass-dark)}
+.tag.ai{color:var(--verdigris)}
+footer{font-size:12.5px;color:var(--muted);text-align:center}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-2{grid-template-columns:1fr}}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}header.top{padding:12px 14px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12.5" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="3.927 3.927"/><circle cx="16" cy="16" r="10.6" fill="currentColor"/><circle cx="16" cy="16" r="2.6" fill="#241c15"/></svg>UnStuck <small>Admin</small></div>
+  <div class="controls" role="group" aria-label="Date range">
+    <button type="button" data-days="1">Today</button>
+    <button type="button" data-days="7">7 days</button>
+    <button type="button" data-days="30">30 days</button>
+    <button type="button" data-days="0">All time</button>
+    <span class="divider" aria-hidden="true"></span>
+    <button type="button" id="refresh">Refresh</button>
+    <a class="button" id="export" href="/api/admin/export.csv?days=7">Export CSV</a>
+    <a class="button" href="/" target="_blank" rel="noopener">Open site</a>
+  </div>
+</header>
+<main>
+  <div id="banners"></div>
+  <section class="kpis" aria-label="Totals" id="kpis"></section>
+
+  <section class="card" aria-labelledby="chart-title">
+    <div class="card-head"><h2 id="chart-title">Daily activity</h2>
+      <div class="legend"><span><i style="background:var(--brass-flat)"></i>Visitors</span><span><i style="background:var(--verdigris)"></i>Page views</span></div></div>
+    <div id="chart"></div>
+  </section>
+
+  <div class="grid-2">
+    <section class="card" aria-labelledby="pages-title"><div class="card-head"><h2 id="pages-title">Pages</h2><small class="muted">Which screens people open</small></div><div id="pages"></div></section>
+    <section class="card" aria-labelledby="ai-title"><div class="card-head"><h2 id="ai-title">AI usage</h2><small class="muted">Requests through the server</small></div><div id="ai"></div></section>
+  </div>
+
+  <section class="card" aria-labelledby="clicks-title">
+    <div class="card-head"><h2 id="clicks-title">Most-clicked buttons</h2><small class="muted">Story text is never recorded. Story nodes are counted by kind only.</small></div>
+    <div id="clicks"></div>
+  </section>
+
+  <section class="card" aria-labelledby="map-title">
+    <div class="card-head"><h2 id="map-title">Click map</h2><small class="muted">Each dot is one click. Darker areas got more clicks.</small></div>
+    <div class="map-controls">
+      <span class="mono">Page</span>
+      <select id="mapPage" aria-label="Page">
+        <option value="projects">Landing page</option><option value="map">Story Map</option><option value="worldbuilding">Worldbuilding</option>
+        <option value="organize">Organize</option><option value="finalize">Finalize</option>
+      </select>
+      <span class="mono" style="margin-left:8px">Device</span>
+      <button type="button" data-edition="desktop" aria-pressed="true">Desktop</button>
+      <button type="button" data-edition="phone" aria-pressed="false">Phone</button>
+    </div>
+    <div class="map-stage" id="mapStage"><iframe id="mapFrame" title="Page preview" tabindex="-1" aria-hidden="true"></iframe><canvas id="mapCanvas"></canvas></div>
+    <p class="map-note muted" id="mapNote"></p>
+  </section>
+
+  <section class="card" aria-labelledby="feed-title">
+    <div class="card-head"><h2 id="feed-title">Recent activity</h2><button type="button" id="optout"></button></div>
+    <ul class="feed" id="feed"></ul>
+  </section>
+  <footer id="footer"></footer>
+</main>
+<script>
+const $ = selector => document.querySelector(selector);
+const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const PAGE_NAMES = {projects:'Landing page',map:'Story Map',worldbuilding:'Worldbuilding',organize:'Organize',finalize:'Finalize'};
+const AI_NAMES = {scan:'Plot-hole scan',suggest:'Suggestions',characters:'Find characters',test:'Connection test',other:'Other'};
+const PREVIEW = {desktop:{w:1440,h:900,file:'writer-desktop.html'},phone:{w:390,h:844,file:'writer-phone.html'}};
+let days = Number(localStorage.getItem('unstuck-admin-days') ?? 7), stats = null, mapEdition = 'desktop', frameHeight = 900;
+
+function number(value) { return Number(value || 0).toLocaleString(); }
+function bar(value, max, green) { const pct = max ? Math.max(2, Math.round(value / max * 100)) : 0; return '<div class="bar'+(green ? ' green' : '')+'"><span style="width:'+pct+'%"></span></div>'; }
+
+async function load() {
+  document.querySelectorAll('[data-days]').forEach(btn => btn.setAttribute('aria-pressed', String(Number(btn.dataset.days) === days)));
+  $('#export').href = '/api/admin/export.csv?days=' + days;
+  try {
+    const response = await fetch('/api/admin/stats?days=' + days, {cache:'no-store'});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Could not load stats.');
+    stats = data;
+    $('#banners').innerHTML = stats.storage === 'memory'
+      ? '<p class="banner">Stats are only kept in the server’s memory, so they reset whenever the server restarts or Render puts it to sleep. Connect Supabase (see README) to keep them.</p>' : '';
+    renderAll();
+  } catch (error) {
+    $('#banners').innerHTML = '<p class="banner error">'+escape(error.message)+'</p>';
+  }
+}
+
+function renderAll() {
+  const t = stats.totals;
+  const kpi = (label, value, note) => '<div class="card kpi"><span class="mono">'+label+'</span><strong>'+value+'</strong><small>'+note+'</small></div>';
+  $('#kpis').innerHTML =
+    kpi('Visitors', number(t.visitors), 'different browsers') +
+    kpi('Sessions', number(t.sessions), 'separate visits') +
+    kpi('Page views', number(t.pageViews), (t.sessions ? (t.pageViews / t.sessions).toFixed(1) : 0) + ' per visit') +
+    kpi('Clicks', number(t.clicks), (t.sessions ? (t.clicks / t.sessions).toFixed(1) : 0) + ' per visit') +
+    kpi('AI requests', number(t.aiRequests), t.aiErrors ? number(t.aiErrors) + ' failed' : 'none failed') +
+    kpi('Phone · Desktop', number(stats.editions.phone) + ' · ' + number(stats.editions.desktop), 'visitors by device');
+  renderChart();
+  const maxViews = Math.max(1, ...stats.pages.map(row => row.views));
+  $('#pages').innerHTML = stats.pages.length ? '<table><thead><tr><th>Page</th><th>Visitors</th><th>Views</th><th style="width:35%"></th></tr></thead><tbody>' +
+    stats.pages.map(row => '<tr><td>'+escape(PAGE_NAMES[row.page] || row.page)+'</td><td class="num">'+number(row.visitors)+'</td><td class="num">'+number(row.views)+'</td><td>'+bar(row.views, maxViews, true)+'</td></tr>').join('') + '</tbody></table>'
+    : '<p class="empty">No page views in this period yet.</p>';
+  $('#ai').innerHTML = stats.ai.length ? '<table><thead><tr><th>Feature</th><th>Uses</th><th>Failed</th><th>Avg time</th></tr></thead><tbody>' +
+    stats.ai.map(row => '<tr><td>'+escape(AI_NAMES[row.kind] || row.kind)+'</td><td class="num">'+number(row.count)+'</td><td class="num">'+number(row.failures)+'</td><td class="num">'+row.avgSeconds+' s</td></tr>').join('') + '</tbody></table>'
+    : '<p class="empty">Nobody has used the AI in this period yet.</p>';
+  const maxClicks = Math.max(1, ...stats.topClicks.map(row => row.count));
+  $('#clicks').innerHTML = stats.topClicks.length ? '<table><thead><tr><th>Button</th><th>Page</th><th>Clicks</th><th style="width:30%"></th></tr></thead><tbody>' +
+    stats.topClicks.map(row => '<tr><td>'+escape(row.label || row.action || '—')+'</td><td>'+escape(PAGE_NAMES[row.page] || row.page || '—')+'</td><td class="num">'+number(row.count)+'</td><td>'+bar(row.count, maxClicks)+'</td></tr>').join('') + '</tbody></table>'
+    : '<p class="empty">No clicks recorded in this period yet.</p>';
+  $('#feed').innerHTML = stats.recent.length ? stats.recent.map(event => {
+    const time = new Date(event.ts).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    const what = event.type === 'view' ? 'Opened ' + (PAGE_NAMES[event.page] || event.page)
+      : event.type === 'ai' ? (AI_NAMES[event.action] || event.action) + (event.label === 'ok' ? '' : ' (failed)')
+      : 'Clicked “' + (event.label || event.action) + '” on ' + (PAGE_NAMES[event.page] || event.page);
+    return '<li><span class="muted">'+escape(time)+'</span><span class="tag'+(event.type === 'ai' ? ' ai' : '')+'">'+escape(event.type)+'</span><span>'+escape(what)+(event.edition === 'phone' ? ' <small class="muted">· phone</small>' : '')+'</span></li>';
+  }).join('') : '<li class="empty">Nothing yet.</li>';
+  $('#footer').textContent = 'Updated ' + new Date(stats.generatedAt).toLocaleString() + ' · stored in ' + (stats.storage === 'supabase' ? 'Supabase' : 'server memory');
+  drawDots();
+}
+
+function renderChart() {
+  const rows = stats.daily, W = 1000, H = 220, pad = {l:36, r:12, t:12, b:28};
+  const max = Math.max(4, ...rows.map(row => Math.max(row.visitors, row.pageViews)));
+  const step = (W - pad.l - pad.r) / rows.length, bw = Math.max(3, Math.min(28, step * .5));
+  const y = value => pad.t + (H - pad.t - pad.b) * (1 - value / max);
+  let svg = '<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Visitors and page views per day">';
+  for (let i = 0; i <= 4; i++) { const v = Math.round(max * i / 4), yy = y(v); svg += '<line x1="'+pad.l+'" x2="'+(W-pad.r)+'" y1="'+yy+'" y2="'+yy+'" stroke="#e3d5b8"/><text x="'+(pad.l-6)+'" y="'+(yy+4)+'" text-anchor="end" font-size="11" fill="#6b5a46">'+v+'</text>'; }
+  const labelEvery = Math.ceil(rows.length / 10);
+  let line = '';
+  rows.forEach((row, i) => {
+    const cx = pad.l + step * i + step / 2;
+    svg += '<rect x="'+(cx - bw/2)+'" y="'+y(row.visitors)+'" width="'+bw+'" height="'+(y(0) - y(row.visitors))+'" fill="#c29a55"><title>'+row.date+': '+row.visitors+' visitors, '+row.pageViews+' page views</title></rect>';
+    line += (i ? 'L' : 'M') + cx + ' ' + y(row.pageViews);
+    if (i % labelEvery === 0 || i === rows.length - 1) svg += '<text x="'+cx+'" y="'+(H-8)+'" text-anchor="middle" font-size="11" fill="#6b5a46">'+row.date.slice(5)+'</text>';
+  });
+  svg += '<path d="'+line+'" fill="none" stroke="#3f7067" stroke-width="2.5"/>';
+  rows.forEach((row, i) => { svg += '<circle cx="'+(pad.l + step * i + step / 2)+'" cy="'+y(row.pageViews)+'" r="3.5" fill="#3f7067"/>'; });
+  $('#chart').innerHTML = svg + '</svg>';
+}
+
+// ----- Click map: a live preview of the page with the clicks drawn on top -----
+function loadPreview() {
+  const page = $('#mapPage').value, {w, h, file} = PREVIEW[mapEdition];
+  const frame = $('#mapFrame');
+  frameHeight = h;
+  frame.style.width = w + 'px';
+  frame.style.height = h + 'px';
+  frame.onload = () => prepareFrame(page);
+  // A fresh query string forces a real reload (changing only the #hash would not).
+  frame.src = '/' + file + '?preview=' + Date.now() + '#' + page;
+  sizeStage();
+}
+function prepareFrame(page) {
+  const frame = $('#mapFrame');
+  try {
+    const win = frame.contentWindow;
+    if (page !== 'projects') {
+      // Inner pages need an open story: open the sample story inside the preview.
+      const state = JSON.parse(win.localStorage.getItem('unstuck-v1') || '{}');
+      const story = state.projects?.find(entry => entry.sampleKey === 'incense-land') || state.projects?.[0];
+      if (story && win.sessionStorage.getItem('unstuck-active') !== story.id) {
+        win.sessionStorage.setItem('unstuck-active', story.id);
+        win.location.reload();
+        return;
+      }
+    } else {
+      setTimeout(() => { frameHeight = Math.max(PREVIEW[mapEdition].h, win.document.documentElement.scrollHeight); frame.style.height = frameHeight + 'px'; sizeStage(); }, 400);
+    }
+  } catch {}
+  sizeStage();
+}
+function sizeStage() {
+  const stage = $('#mapStage'), {w} = PREVIEW[mapEdition];
+  const available = stage.parentElement.clientWidth - 2;
+  const scale = Math.min(1, available / w);
+  const width = w * scale, height = frameHeight * scale;
+  stage.style.width = width + 'px';
+  stage.style.height = height + 'px';
+  $('#mapFrame').style.transform = 'scale(' + scale + ')';
+  const canvas = $('#mapCanvas'), ratio = window.devicePixelRatio || 1;
+  canvas.width = width * ratio; canvas.height = height * ratio;
+  canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
+  canvas.dataset.scale = scale;
+  drawDots();
+}
+function drawDots() {
+  const canvas = $('#mapCanvas');
+  if (!stats || !canvas.width) return;
+  const page = $('#mapPage').value, ctx = canvas.getContext('2d'), ratio = window.devicePixelRatio || 1;
+  const scale = Number(canvas.dataset.scale || 1), {w, h} = PREVIEW[mapEdition];
+  const points = stats.clickPoints[mapEdition + ':' + page] || [];
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'rgba(179,64,43,0.32)';
+  for (const [x, y, doc] of points) {
+    ctx.beginPath();
+    ctx.arc(x * w * scale, y * (doc ? frameHeight : h) * scale, Math.max(4, 9 * scale), 0, Math.PI * 2);
+    ctx.fill();
+  }
+  $('#mapNote').textContent = points.length ? points.length + ' click' + (points.length === 1 ? '' : 's') + ' on the ' + (PAGE_NAMES[page] || page) + ' (' + mapEdition + '). The preview shows this browser’s copy of the app, so content may differ slightly from what visitors saw.'
+    : 'No clicks recorded on this page (' + mapEdition + ') in this period.';
+}
+
+// ----- Opt out: don't count this browser's own visits -----
+function renderOptOut() {
+  const off = localStorage.getItem('unstuck-no-track') === '1';
+  $('#optout').textContent = off ? 'This browser is not counted · Count it again' : 'Don’t count my own visits';
+}
+$('#optout').addEventListener('click', () => {
+  if (localStorage.getItem('unstuck-no-track') === '1') localStorage.removeItem('unstuck-no-track'); else localStorage.setItem('unstuck-no-track', '1');
+  renderOptOut();
+});
+
+document.querySelectorAll('[data-days]').forEach(btn => btn.addEventListener('click', () => { days = Number(btn.dataset.days); localStorage.setItem('unstuck-admin-days', days); load(); }));
+document.querySelectorAll('[data-edition]').forEach(btn => btn.addEventListener('click', () => {
+  mapEdition = btn.dataset.edition;
+  document.querySelectorAll('[data-edition]').forEach(other => other.setAttribute('aria-pressed', String(other === btn)));
+  loadPreview();
+}));
+$('#mapPage').addEventListener('change', loadPreview);
+$('#refresh').addEventListener('click', load);
+window.addEventListener('resize', sizeStage);
+setInterval(() => { if (document.visibilityState === 'visible') load(); }, 60_000);
+renderOptOut();
+loadPreview();
+load();
+</script>
+</body>
+</html>

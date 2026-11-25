@@ -529,6 +529,7 @@ html[data-edition=phone] .top-tools .edition{font-size:12px}
 .evidence{background:#fbefe8}
 .pick{background:var(--white)}
 .page-meter{margin:0 0 18px}
+.privacy-note{margin:26px auto 0;max-width:620px;text-align:center;font-size:12.5px;color:var(--muted)}
 .ai-status{font-size:14px;border:1px solid var(--line);border-radius:var(--radius);padding:8px 10px;background:var(--white)}
 .ai-status.ok{border-color:var(--verdigris);color:var(--verdigris);font-weight:600}
 .ai-status.warn{border-color:#c9a462;background:#f6ead0}
@@ -1015,6 +1016,7 @@ function render() {
     popupMode = 'details';
     selected = null;
     canvasTool = 'pan';
+    tracker.add({type:'view',page:next,vw:innerWidth,vh:innerHeight});
   }
   page = next;
   graph = null;
@@ -1061,7 +1063,8 @@ function render() {
       '<section class="plates" aria-label="What UnStuck does">'+featurePlates.map(([name,text,icon])=>'<article class="plate"><span class="medallion">'+icon+'</span><h2>'+name+'</h2><p>'+text+'</p></article>').join('')+'</section>'+
       '<section class="library"><div class="library-head"><p class="mono">The library</p><h2>Your stories</h2><div class="ornament small" aria-hidden="true"><span></span><b>⚙&#xFE0E;</b><span></span></div></div>'+
       '<div class="ledger-grid">'+state.projects.map(ledgerCard).join('')+
-      '<button type="button" class="ledger-new" data-action="new-project"><span class="ledger-new-mark" aria-hidden="true">+</span><strong>Start a new story</strong><small>Begin with a title. Add beats, characters and places as you go.</small></button></div></section>';
+      '<button type="button" class="ledger-new" data-action="new-project"><span class="ledger-new-mark" aria-hidden="true">+</span><strong>Start a new story</strong><small>Begin with a title. Add beats, characters and places as you go.</small></button></div>'+
+      '<p class="privacy-note">UnStuck counts page visits and button clicks anonymously to improve the site. Your stories are saved in your browser and only leave it when you use the AI.</p></section>';
   } else if (page === 'worldbuilding') {
     content = worldbuildingContent(p,title,description);
   } else if (page === 'organize') {
@@ -1814,7 +1817,7 @@ function requireAI() {
 async function callServerAI(system, prompt) {
   let response;
   try {
-    response = await fetch(AI_SERVER+'/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system,prompt})});
+    response = await fetch(AI_SERVER+'/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system,prompt,kind:aiBusy || 'test',visitor:tracker.visitor,session:tracker.session})});
   } catch { throw new Error('Could not reach the UnStuck server. Is it running?'); }
   const data = await response.json().catch(()=>({}));
   if (!response.ok) throw new Error(data.error || 'The UnStuck server returned an error ('+response.status+').');
@@ -2004,6 +2007,60 @@ async function findCharacters() {
     },'Add selected',true);
 }
 
+// ===== Anonymous usage stats =====
+// When the UnStuck server is running, page views and button clicks are sent to /api/track for the
+// admin page. Only page names, button names and click positions are sent, never story text.
+// Not counted: the admin page's previews (iframes) and browsers that chose "Don't count my visits".
+const tracker = (() => {
+  const newId = () => (globalThis.crypto?.randomUUID?.() || Date.now().toString(36)+Math.random().toString(36).slice(2)).slice(0,36);
+  let enabled = /^https?:$/.test(location.protocol) && window.top === window;
+  let visitor = '', session = '';
+  try {
+    if (localStorage.getItem('unstuck-no-track') === '1') enabled = false;
+    visitor = localStorage.getItem('unstuck-visitor') || newId();
+    localStorage.setItem('unstuck-visitor',visitor);
+    session = sessionStorage.getItem('unstuck-session') || newId();
+    sessionStorage.setItem('unstuck-session',session);
+  } catch { visitor ||= newId(); session ||= newId(); }
+  const queue = [];
+  let timer = null;
+  function flush(leaving = false) {
+    clearTimeout(timer); timer = null;
+    while (enabled && queue.length) {
+      const body = JSON.stringify({visitor,session,edition:phone ? 'phone' : 'desktop',events:queue.splice(0,50)});
+      if (leaving && navigator.sendBeacon) navigator.sendBeacon(AI_SERVER+'/api/track',new Blob([body],{type:'application/json'}));
+      else fetch(AI_SERVER+'/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body,keepalive:true})
+        .then(response=>{ if (response.status === 404 || response.status === 405) enabled = false; }).catch(()=>{});
+    }
+  }
+  function add(event) {
+    if (!enabled) return;
+    queue.push({...event,t:Date.now()});
+    if (queue.length >= 20) flush(); else if (!timer) timer = setTimeout(flush,4000);
+  }
+  document.addEventListener('visibilitychange',()=>{ if (document.visibilityState === 'hidden') flush(true); });
+  window.addEventListener('pagehide',()=>flush(true));
+  return {add,get visitor() { return visitor; },get session() { return session; }};
+})();
+document.addEventListener('click',event=>{
+  const target = event.target.closest('button, a, [data-node], summary');
+  if (!target) return;
+  let action, label;
+  if (target.dataset.node) {
+    // Story nodes: record only the kind of node, never its title.
+    action = 'node';
+    label = ['beat','flag','note','issue','alternate'].find(kind=>target.classList.contains(kind)) || 'node';
+  } else {
+    action = (target.dataset.action || (target.tagName === 'A' ? 'link' : target.tagName.toLowerCase())).split(':')[0];
+    label = target.hasAttribute('download') ? 'attachment' : target.textContent.replace(/\s+/g,' ').trim().slice(0,40);
+  }
+  const docMode = page === 'projects';
+  const hasPosition = event.detail > 0;
+  tracker.add({type:'click',page,action,label,docMode,
+    x:hasPosition ? event.clientX/innerWidth : undefined,
+    y:hasPosition ? (docMode ? event.pageY/document.documentElement.scrollHeight : event.clientY/innerHeight) : undefined,
+    vw:innerWidth,vh:innerHeight});
+},true);
 $('#mobileNavigation').addEventListener('change',event=>go(event.target.value));
 window.addEventListener('hashchange',()=>{window.scrollTo(0,0);render();});
 window.addEventListener('resize',()=>{fitDescriptionEditor();graph?.draw();});
