@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UnStuck</title>
+  <script>
+    // Opens the phone view only on actual phones. A choice made with ?view=phone|desktop,
+    // or with the "Phone view / Desktop view" link in the app, is remembered.
+    let edition = new URLSearchParams(location.search).get('view');
+    try {
+      if (edition === 'phone' || edition === 'desktop') localStorage.setItem('unstuck-edition', edition);
+      else edition = localStorage.getItem('unstuck-edition');
+    } catch {}
+    if (edition !== 'phone' && edition !== 'desktop') {
+      const phoneDevice = /Android|iPhone|iPod|Mobile/i.test(navigator.userAgent) ||
+        (matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) < 600);
+      edition = phoneDevice ? 'phone' : 'desktop';
+    }
+    location.replace('writer-' + edition + '.html' + location.hash);
+  </script>
+</head>
+<body>
+  <h1>UnStuck</h1>
+  <p>Open the <a href="writer-desktop.html">desktop view</a> or the <a href="writer-phone.html">phone view</a>.</p>
+</body>
+</html>

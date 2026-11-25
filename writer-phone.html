@@ -1,0 +1,2016 @@
+<!doctype html>
+<html lang="en" data-edition="phone">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UnStuck — Writer workspace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f1f7fa;--white:#fff;--ink:#20272b;--muted:#53656f;--line:#a2b2bb;--blue:#d7ebf8;--strong:#285675;--red:#a73f2e;--radius:5px}
+*{box-sizing:border-box}body{margin:0;background:#e5edf2;color:var(--ink);font:16px/1.45 system-ui,sans-serif}button,input,textarea,select{font:inherit;color:inherit}button,select{cursor:pointer}button{border:1px solid var(--line);border-radius:var(--radius);background:white;padding:8px 12px}button:hover{background:#edf5fa}button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--strong);outline-offset:2px}button.primary{background:var(--blue);border-color:#779ab3;font-weight:650}button[aria-current=page]{background:var(--blue);border-color:#94bad3;font-weight:650}a{color:var(--strong)}h1,h2,h3,p{margin:0}h1{font-size:clamp(28px,4vw,41px);letter-spacing:-.045em;line-height:1.07}h2{font-size:19px;letter-spacing:-.02em}h3{font-size:16px}small,.muted{color:var(--muted)}.mono{font:12px ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.shell{min-height:100dvh;background:var(--paper)}.top{height:66px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 26px;gap:16px}.brand{font-size:22px;font-weight:800;letter-spacing:-.06em;display:flex;gap:10px;align-items:center;white-space:nowrap}.mark{width:25px;height:25px;border:1px solid var(--strong);background:var(--blue);border-radius:4px;display:grid;place-items:center;font:16px monospace}.top-project{font-size:14px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.edition{font-size:13px;white-space:nowrap}.layout{display:grid;grid-template-columns:215px minmax(0,1fr);min-height:calc(100dvh - 66px)}aside.nav{border-right:1px solid var(--line);padding:30px 15px;background:#f8fbfd}.nav .mono{padding-left:10px;margin-bottom:12px}.nav button{width:100%;text-align:left;margin:2px 0;border-color:transparent;background:transparent;display:flex;align-items:center;gap:10px;font-size:14px}.nav button[aria-current=page]{background:var(--blue);border-color:#94bad3}.nav button:hover{background:#e8f2f8}.nav-icon{width:18px;text-align:center;color:var(--strong)}main{min-width:0;padding:30px clamp(16px,3vw,42px) 36px}.crumb{margin-bottom:11px}.heading{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:23px}.heading p{margin-top:9px}.actions{display:flex;gap:7px;flex-wrap:wrap}.work{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:15px;align-items:start}.frame,.panel,.card{background:white;border:1px solid var(--line);border-radius:var(--radius);min-width:0}.frame{overflow:hidden}.bar,.foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;flex-wrap:wrap}.bar{border-bottom:1px solid var(--line)}.foot{border-top:1px solid var(--line)}.foot small{font-size:13px}.surface{height:clamp(355px,55vh,610px);position:relative;overflow:hidden;touch-action:none;background-color:#f7fbfd;background-image:radial-gradient(#9eb2bf 1px,transparent 1px);background-size:20px 20px;cursor:grab}.surface:active{cursor:grabbing}.surface canvas,.layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.node{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;min-width:104px;max-width:170px;text-align:left;box-shadow:2px 2px 0 #c7d4dc;line-height:1.25;background:#fff;cursor:grab}.node .mono{display:block;font-size:10px;margin-bottom:4px}.node strong{font-size:14px}.node.root{background:var(--blue);border-color:#7095ae}.node.selected{outline:2px solid #437290;outline-offset:2px}.node.note{background:#f9fbef;min-width:130px}.node.issue{background:#fbebe6;border-color:#b97061;color:var(--red);cursor:pointer}.node.issue .mono{color:var(--red)}.panel{padding:15px;display:grid;gap:12px}.panel hr{border:0;border-top:1px solid #dbe4e9;width:100%;margin:1px 0}.panel p{font-size:14px}.panel button{text-align:left}.status{font-size:13px;color:var(--muted)}.issue-text{color:var(--red)}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:12px}.card{display:grid;gap:11px;padding:16px;align-content:start}.card p{white-space:pre-wrap;overflow-wrap:anywhere}.fields{display:grid;gap:12px;max-width:720px}.fields label{display:grid;gap:6px;font-weight:600}input,textarea,select{max-width:100%;width:100%;background:white;border:1px solid var(--line);border-radius:4px;padding:9px 10px}textarea{min-height:100px;resize:vertical}dialog{width:min(460px,calc(100vw - 26px));max-height:90dvh;overflow:auto;border:1px solid var(--line);border-radius:5px;padding:20px;color:var(--ink)}dialog::backdrop{background:#25374450}dialog form{display:grid;gap:13px}dialog .actions{justify-content:end}.mobile-nav{display:none}.toast{position:fixed;bottom:16px;right:16px;background:#263d4b;color:white;padding:9px 14px;border-radius:4px;z-index:20;font-size:14px}.toast:empty{display:none}
+@media(max-width:1050px){.work{grid-template-columns:minmax(0,1fr)}}
+html[data-edition=phone] .shell{max-width:430px;margin:auto;box-shadow:0 0 0 1px var(--line)}
+@media(max-width:680px){
+.layout{display:block}.nav{display:none}.mobile-nav{display:grid;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);background:#f8fbfd}.mobile-nav select{font-size:15px}.top{height:53px;padding:0 14px}.top-project{display:none}main{padding:19px 13px 25px}.heading{align-items:start;flex-direction:column;margin-bottom:15px}.surface{height:365px}.node{min-width:78px;max-width:110px;padding:6px}.node strong{font-size:12px}.node .mono{font-size:9px}.node.note{min-width:93px}.toast{bottom:9px}
+}
+html[data-edition=phone] .layout{display:block}html[data-edition=phone] .nav{display:none}html[data-edition=phone] .mobile-nav{display:grid;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);background:#f8fbfd}
+html[data-edition=phone] .top{height:53px;padding:0 14px}html[data-edition=phone] .top-project{display:none}html[data-edition=phone] main{padding:19px 13px 25px}html[data-edition=phone] .heading{align-items:start;flex-direction:column;margin-bottom:15px}html[data-edition=phone] .work{grid-template-columns:minmax(0,1fr)}html[data-edition=phone] .surface{height:365px}html[data-edition=phone] .node{min-width:78px;max-width:110px;padding:6px}html[data-edition=phone] .node strong{font-size:12px}html[data-edition=phone] .node .mono{font-size:9px}html[data-edition=phone] .node.note{min-width:93px}
+
+/* The canvas covers the workspace. Navigation and tools sit above it. */
+.shell.canvas-mode{position:relative;height:100dvh;min-height:0;overflow:hidden;isolation:isolate}
+.canvas-mode .layout,.canvas-mode main{display:contents}
+.canvas-mode .surface{position:absolute;inset:0;height:auto;background-color:#f3f8fb}
+.canvas-mode .top,.canvas-mode .nav,.canvas-mode .mobile-nav,.canvas-mode .canvas-info,.canvas-mode .canvas-tools,.canvas-mode .canvas-details,.canvas-mode .canvas-hint{position:absolute;z-index:2;background:white;border:1px solid var(--line);border-radius:8px;box-shadow:0 2px 5px #263d4b15}
+.canvas-mode .top{top:12px;left:12px;right:12px;height:48px;padding:0 13px}
+.canvas-mode .nav{top:120px;left:12px;width:174px;max-height:calc(100% - 192px);overflow:auto;padding:9px}
+.canvas-mode .nav .mono{margin:3px 0 6px}
+.canvas-mode .nav button{min-height:35px;padding:6px 8px}
+.canvas-info{left:12px;top:70px;display:flex;align-items:center;gap:10px;padding:5px 9px}
+.canvas-info h1{font-size:17px;letter-spacing:-.02em}
+.canvas-info button,.canvas-tools button,.canvas-details>button{font-size:14px;padding:6px 9px}
+.canvas-tools{bottom:14px;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:5px;padding:5px;white-space:nowrap;max-width:calc(100% - 16px)}
+.canvas-tools .status{min-width:37px;text-align:center}
+.canvas-details{top:70px;right:12px;width:254px;max-height:calc(100% - 142px);overflow:auto;padding:6px}
+.canvas-details>button{width:100%;text-align:left}
+.canvas-details .panel{border:0;padding:10px 6px 6px;overflow-wrap:anywhere}
+.canvas-details.collapsed{width:auto}
+.canvas-details.collapsed .panel,.canvas-mode.nav-hidden .nav{display:none}
+.canvas-hint{left:12px;bottom:14px;padding:6px 9px;color:var(--muted);font-size:12px;pointer-events:none}
+.canvas-mode .surface[data-tool=rotate]{cursor:move}
+.canvas-mode .surface[data-tool=pan] .node{cursor:grab}
+@media(max-width:1000px){.canvas-hint{display:none}}
+@media(max-width:680px){
+  .canvas-mode .mobile-nav{display:block;left:8px;top:65px;width:min(170px,48%);padding:3px}
+  .canvas-mode .mobile-nav label,.canvas-info{display:none}
+  .canvas-mode .mobile-nav select{padding:6px 8px}
+  .canvas-mode .top{top:8px;left:8px;right:8px}
+  .canvas-mode .canvas-details{top:auto;right:8px;bottom:65px;width:min(340px,calc(100% - 16px));max-height:43dvh}
+  .canvas-mode .canvas-details.collapsed{width:auto}
+  .canvas-mode .canvas-tools{bottom:10px}
+}
+html[data-edition=phone] .canvas-mode .mobile-nav{display:block;left:8px;top:65px;width:min(170px,48%);padding:3px}
+html[data-edition=phone] .canvas-mode .mobile-nav label,html[data-edition=phone] .canvas-info,html[data-edition=phone] .canvas-hint{display:none}
+html[data-edition=phone] .canvas-mode .mobile-nav select{padding:6px 8px}
+html[data-edition=phone] .canvas-mode .top{top:8px;left:8px;right:8px}
+html[data-edition=phone] .canvas-mode .canvas-details{top:auto;right:8px;bottom:65px;width:min(340px,calc(100% - 16px));max-height:43dvh}
+html[data-edition=phone] .canvas-mode .canvas-details.collapsed{width:auto}
+html[data-edition=phone] .canvas-mode .canvas-tools{bottom:10px}
+
+.shell.canvas-mode .surface{width:100%;height:100%}
+.projects-mode .layout{display:block}
+.projects-mode .nav,.projects-mode .mobile-nav{display:none}
+.projects-mode main{max-width:1020px;margin:auto}
+.project-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.project-cards .card{min-height:170px}
+.organize-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
+.group{background:#e9f2f7;border:1px solid var(--line);border-radius:6px;padding:10px;display:grid;gap:8px;min-width:0}
+.group-head{display:flex;align-items:center;justify-content:space-between;gap:5px}
+.group-head h2{font-size:15px;overflow-wrap:anywhere}
+.group-head button{padding:3px 8px}
+.group .card{padding:9px;gap:6px;position:relative}
+.group h3,.group p{overflow-wrap:anywhere}
+.group p{font-size:13px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.group .actions button{font-size:13px;padding:4px 7px}
+.group .actions{gap:4px}
+.canvas-mode .node.beat{background:#e0edf7;border-color:#83a3b9}
+.canvas-mode .node.flag{background:#fff2d5;border-color:#ad9471}
+.canvas-mode .node.issue{background:#fae7e1;border-color:#b97061;cursor:grab}
+.canvas-mode .node:active{cursor:grabbing}
+.canvas-mode .node.alternate{background:#eee9fa;border-style:dashed}
+.canvas-mode .canvas-details.node-popup{top:0;left:0;right:auto;bottom:auto;width:min(275px,calc(100% - 20px));max-height:min(335px,calc(100% - 148px));overscroll-behavior:contain}
+
+.node-popup[hidden]{display:none}
+.analysis-badge{position:absolute;z-index:2;top:70px;right:12px;background:white;border:1px solid var(--line);border-radius:7px;padding:4px}
+.analysis-badge>span{display:block;padding:5px}
+.organize-popup{position:absolute;z-index:3;top:calc(100% + 4px);left:0;width:min(300px,100%);max-height:325px;overflow:auto;box-shadow:0 4px 12px #263d4b30}
+.organize-popup .card{border:1px solid var(--line)}
+@media(max-width:680px){
+  .analysis-badge{top:65px;right:8px}
+  .analysis-badge button{font-size:13px;padding:5px 8px}
+  .organize-popup{position:fixed;top:auto;bottom:12px;left:12px;width:calc(100% - 24px);max-height:55dvh}
+}
+html[data-edition=phone] .analysis-badge{top:65px;right:8px}
+html[data-edition=phone] .analysis-badge button{font-size:13px;padding:5px 8px}
+html[data-edition=phone] .organize-popup{position:fixed;top:auto;bottom:12px;left:50%;transform:translateX(-50%);width:min(400px,calc(100% - 24px));max-height:55dvh}
+
+.node-popup .panel .card{padding:8px;gap:5px}
+.node-popup .panel .card h2{font-size:15px}
+.node-popup .panel textarea{min-height:64px}
+.node-popup .panel .actions button{font-size:13px;padding:5px 7px}
+.node strong,.node .mono{overflow-wrap:anywhere}
+.canvas-empty{position:absolute;z-index:2;left:50%;top:43%;transform:translateX(-50%);width:min(300px,calc(100% - 24px))}
+.canvas-mode .surface[data-tool=rotate]{cursor:grab}
+.canvas-mode .surface[data-tool=rotate]:active{cursor:move}
+.canvas-mode .canvas-tools{width:max-content;overflow-x:auto;justify-content:start}
+.canvas-mode .canvas-tools>*{flex:none}
+@media(max-width:370px){.canvas-mode .canvas-tools{gap:3px}.canvas-mode .canvas-tools button{font-size:13px;padding:6px}.canvas-mode .canvas-tools .status{min-width:32px}}
+@media(max-width:760px){.organize-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.node-popup .panel{gap:7px}.project-cards .card{padding:10px}.project-cards .card h2{font-size:16px}}
+html[data-edition=phone] .organize-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+html[data-edition=phone] .project-cards .card{padding:10px}
+html[data-edition=phone] .project-cards .card h2{font-size:16px}
+
+.canvas-mode .node-popup,.organize-popup{display:flex;flex-direction:column;overflow:hidden}
+.canvas-mode .node-popup[hidden]{display:none}
+.canvas-mode .canvas-details.node-popup:not([hidden]),.organize-popup{
+  width:min(var(--popup-width,275px),calc(100vw - 20px));
+  height:var(--popup-height,auto);
+}
+.canvas-mode .canvas-details.node-popup:not([hidden]){
+  width:min(var(--popup-width,275px),calc(100% - 20px));
+  max-height:calc(100% - 180px);
+}
+.organize-popup{max-height:55dvh}
+.group:nth-child(3n) .organize-popup{left:auto;right:0}
+.popup-body{overflow:auto;min-height:0;flex:1;align-content:start;overscroll-behavior:contain}
+.popup-footer{display:flex;justify-content:flex-end;flex:none}
+.resize-grip{padding:0;width:34px;height:28px;cursor:nwse-resize;touch-action:none;user-select:none;color:var(--strong);font-size:19px;line-height:1}
+@media(max-width:760px){.group:nth-child(3n) .organize-popup{right:auto;left:0}.group:nth-child(2n) .organize-popup{left:auto;right:0}}
+@media(max-width:680px){.organize-grid .group .organize-popup{left:50%;right:auto;transform:translateX(-50%)}}
+html[data-edition=phone] .organize-grid .group .organize-popup{left:50%;right:auto;transform:translateX(-50%)}
+
+.canvas-mode .surface{cursor:crosshair;isolation:isolate}
+.canvas-mode .surface:active{cursor:crosshair}
+.canvas-mode .surface[data-tool=rotate],.canvas-mode .surface[data-tool=rotate]:active{cursor:move}
+.marquee{position:absolute;z-index:3;pointer-events:none;border:1px solid #427ba2;background:#82b9dc34}
+.analysis-badge button{font-size:13px;padding:5px 8px}
+.group p.node-description,.node-description{display:block;white-space:pre-wrap;overflow-wrap:anywhere;cursor:text;touch-action:manipulation}
+.node-description:hover{background:#eef5f9}
+.node-description:focus-visible{outline:2px solid var(--strong);outline-offset:3px}
+.description-editor{gap:6px;max-width:none}
+.description-editor textarea{display:block;width:100%;min-height:2em;padding:3px 5px;border:1px solid #a4bccd;border-radius:4px;background:#f6fafd;resize:none;overflow:hidden;font-size:14px;font-weight:400;line-height:1.45;color:var(--ink)}
+.description-editor textarea:focus{outline:1px solid #7398b3;outline-offset:0}
+.description-editor .actions{justify-content:flex-end}
+.description-editor .actions button{font-size:13px;padding:4px 8px}
+@media(max-width:680px){.canvas-tools [data-action=tool]{display:none}}
+
+/* ===== Added: undo/AI header tools, Worldbuilding page, AI panels (original look) ===== */
+.top-tools{display:flex;align-items:center;gap:6px}
+.top-tools button{padding:5px 10px;font-size:14px;line-height:1.3}
+.top-tools button:disabled{opacity:.4;cursor:default;background:white}
+#aiButton.ready{background:var(--blue);border-color:#94bad3;font-weight:650}
+.top-tools .edition{margin-left:6px}
+.faint{color:#8a99a1;font-style:italic}
+button:disabled{opacity:.5;cursor:default}
+
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:-6px 0 18px}
+.tabs small{color:var(--muted);font-weight:400;margin-left:2px}
+.page-meter{max-width:420px;margin:0 0 16px}
+.meter-wrap{display:grid;gap:5px}
+.meter-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.meter{height:6px;background:#e1eaef;border-radius:4px;overflow:hidden}
+.meter span{display:block;height:100%;background:var(--strong);transition:width .2s}
+
+.sheet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:12px}
+.sheet{gap:12px}
+.sheet-head{display:flex;gap:12px;align-items:center}
+.sheet-head>div{min-width:0}
+.sheet-head h2{font-size:17px;line-height:1.25}
+.sheet-head small{display:block;line-height:1.35;margin-top:2px}
+.monogram{width:42px;height:42px;flex:none;border-radius:50%;display:grid;place-items:center;font:700 14px ui-monospace,monospace;color:var(--strong);background:var(--blue);border:1px solid #94bad3}
+.sheet dl,.facts{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin:0;font-size:14px}
+.sheet dt,.facts dt{color:var(--muted);font-weight:600}
+.sheet dd,.facts dd{margin:0;overflow-wrap:anywhere}
+.sheet dd{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.facts{font-size:13px;gap:3px 10px}
+.empty-state{justify-items:start;max-width:560px;padding:22px}
+
+.world-sections{display:grid;gap:14px}
+.world-section{padding:18px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.world-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.world-fields label{display:grid;gap:5px;font-weight:600;font-size:14px;align-content:start}
+.world-fields textarea{min-height:74px;font-weight:400}
+
+dialog.wide{width:min(720px,calc(100vw - 26px))}
+dialog .fields{max-width:none}
+.field-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.detail-set{border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px 12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;background:#f7fbfd}
+.detail-set[hidden]{display:none}
+.detail-set legend{font:12px ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:0 5px}
+.detail-set textarea{min-height:60px}
+.shortcut-list{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;align-items:center;font-size:14px}
+.kbd{font:12px ui-monospace,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:2px 7px;background:white;white-space:nowrap;justify-self:start}
+
+.analysis-badge{display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:flex-end;max-width:calc(100% - 20px)}
+.analysis-badge>span{padding:5px}
+.ai-note{background:var(--blue);border:1px solid #94bad3;border-radius:var(--radius);padding:8px 10px;font-size:14px}
+.evidence{font-size:13px;border:1px solid #e3c9c1;background:#fdf5f2;border-radius:var(--radius);padding:6px 9px}
+.evidence summary{cursor:pointer;color:var(--red);font-weight:600}
+.evidence ul{margin:6px 0 2px;padding-left:18px;display:grid;gap:4px}
+.pick-list{display:grid;gap:8px;max-height:50dvh;overflow:auto}
+.pick{display:flex !important;grid-template-columns:none;gap:10px;align-items:flex-start;font-weight:400 !important;padding:8px 10px;border:1px solid var(--line);border-radius:var(--radius);background:white}
+.pick input{width:auto;margin-top:4px}
+
+@media(max-width:760px){.world-fields{grid-template-columns:1fr}}
+@media(max-width:680px){.detail-set,.field-row{grid-template-columns:1fr}.top-tools{gap:4px}.top-tools .edition{font-size:12px;margin-left:2px}.top-tools button{padding:4px 7px}}
+html[data-edition=phone] .world-fields,html[data-edition=phone] .detail-set,html[data-edition=phone] .field-row{grid-template-columns:1fr}
+html[data-edition=phone] .top-tools{gap:4px}
+html[data-edition=phone] .top-tools .edition{font-size:12px;margin-left:2px}
+html[data-edition=phone] .top-tools button{padding:4px 8px}
+html[data-edition=phone] .analysis-badge{max-width:calc(100% - 16px)}
+
+/* ==========  UnStuck · steampunk theme layer  ==========
+   Parchment, brass and soot. Ornament stays in frames and dividers
+   so content and controls remain plain and easy to scan. */
+:root{--paper:#f4ecdb;--white:#fffaf0;--ink:#2a2119;--muted:#6b5a46;--faint:#a8977c;--line:#d2bf9c;--blue:#ecdcb6;--strong:#7a4a1f;--red:#8e3b26;
+  --brass:#b08a4a;--brass-dark:#7d5d2a;--verdigris:#3f7067;--soot:#241c15;
+  --display:'Cinzel',Georgia,'Times New Roman',serif;--serif:'Lora',Georgia,serif}
+body{background:#e6d9bf;color:var(--ink)}
+.shell{background:var(--paper);background-image:radial-gradient(ellipse at 15% 0%,#fbf5e866,transparent 55%),radial-gradient(ellipse at 100% 100%,#e5d4b255,transparent 50%)}
+h1,.brand{font-family:var(--display);font-weight:700;letter-spacing:.03em}
+h1{font-size:clamp(25px,3.2vw,36px);line-height:1.15}
+h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:0}
+.mono{color:var(--brass-dark)}
+.faint{color:var(--faint);font-style:italic}
+.small{font-size:13px}
+a{color:var(--strong)}
+button{background:var(--white);border-color:var(--line);transition:background .12s,border-color .12s}
+button:hover{background:#f5e8cb;border-color:var(--brass)}
+button:disabled{opacity:.4;cursor:default}
+button:disabled:hover{background:var(--white);border-color:var(--line)}
+button.primary{background:linear-gradient(#d4b06b,#b08a4a);border-color:var(--brass-dark);color:#21160a;box-shadow:inset 0 1px 0 #f2dca5}
+button.primary:hover{background:linear-gradient(#dcba78,#b8924f);border-color:#6a4d21}
+button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--verdigris);outline-offset:2px}
+input,textarea,select{background:#fffdf8;border-color:var(--line)}
+input:focus,textarea:focus,select:focus{border-color:var(--brass)}
+
+/* Top bar */
+.top{background:var(--soot);color:#f1e3c4;border-bottom:3px double var(--brass)}
+.brand{color:#f1e3c4;font-size:21px;gap:9px}
+.brand .mark{width:28px;height:28px;border:0;background:none;color:var(--brass)}
+.brand .mark svg{width:28px;height:28px;display:block}
+.top-project{color:#cdb995;font-family:var(--serif);font-style:italic;font-size:15px}
+.top-tools{display:flex;align-items:center;gap:6px}
+.top button.icon{background:transparent;border-color:#5d4c38;color:#f1e3c4;padding:4px 10px;font-size:16px;line-height:1.2;min-width:34px}
+.top button.icon:hover{background:#3b2e22;border-color:var(--brass)}
+.top button.icon:disabled:hover{background:transparent;border-color:#5d4c38}
+.top a.edition{color:#e3c58a;margin-left:8px}
+.canvas-mode .top{background:var(--soot);border:1px solid var(--brass-dark);box-shadow:0 3px 10px #1a120b40}
+
+/* Side navigation */
+aside.nav,.mobile-nav{background:#efe4cc}
+aside.nav{border-right:1px solid var(--line)}
+.nav button{color:var(--ink);border-radius:4px}
+.nav button:hover{background:#e8d8b6}
+.nav button[aria-current=page]{background:var(--white);border-color:var(--line);box-shadow:inset 3px 0 0 var(--brass);font-weight:650}
+.nav-icon{color:var(--brass-dark)}
+
+/* Page heading with a gear divider */
+.crumb{color:var(--brass-dark)}
+.heading{padding-bottom:18px;border-bottom:1px solid var(--line);position:relative;margin-bottom:30px}
+.heading::after{content:"⚙\FE0E";position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);background:var(--paper);padding:0 12px;color:var(--brass);font-size:18px;line-height:22px}
+
+/* Framed cards with corner rivets */
+.frame,.panel,.card{background:var(--white);border-color:var(--line);box-shadow:inset 0 0 0 3px var(--white),inset 0 0 0 4px #ecdfc4,0 1px 2px #5a43221a}
+.cards>.card,.sheet-grid>.card,.world-section,.empty-state{
+  background:radial-gradient(circle at 10px 10px,var(--brass) 1.5px,transparent 2.2px),radial-gradient(circle at calc(100% - 10px) 10px,var(--brass) 1.5px,transparent 2.2px),
+    radial-gradient(circle at 10px calc(100% - 10px),var(--brass) 1.5px,transparent 2.2px),radial-gradient(circle at calc(100% - 10px) calc(100% - 10px),var(--brass) 1.5px,transparent 2.2px),var(--white);
+  padding:20px}
+.card .mono{font-size:11px}
+.project-cards .card h2{font-size:21px}
+.group{background:#efe3c8;border-color:var(--line)}
+.group-head h2{font-family:var(--display);font-size:14px;letter-spacing:.04em}
+
+/* Story map */
+.surface{background-color:#f3ead8;background-image:radial-gradient(#c9b58d 1px,transparent 1px)}
+.canvas-mode .surface{background-color:#f2e8d3}
+.canvas-mode .nav,.canvas-mode .mobile-nav,.canvas-mode .canvas-info,.canvas-mode .canvas-tools,.canvas-mode .canvas-details,.canvas-mode .canvas-hint,.analysis-badge{background:var(--white);border-color:var(--line);box-shadow:0 2px 8px #3a2a1626}
+.canvas-info h1{font-size:16px}
+.node{background:var(--white);border-color:#c2aa7f;box-shadow:2px 2px 0 #dccaa6}
+.node strong{font-family:var(--serif);font-weight:600}
+.canvas-mode .node.beat{background:#f0ddb2;border-color:#a07c3f;box-shadow:2px 2px 0 #cdb27c}
+.canvas-mode .node.flag{background:var(--white);border-color:#c2aa7f}
+.node.note{background:#f5f0dc}
+.node.issue,.canvas-mode .node.issue{background:#f6dfd3;border-color:#a3503a;color:var(--red)}
+.canvas-mode .node.alternate{background:#e3eee9;border-color:#6f978d}
+.node.selected{outline:2px solid var(--verdigris)}
+.marquee{border-color:var(--verdigris);background:#3f706722}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:0;font-size:13px}
+.facts dt{color:var(--muted);font-weight:600}
+.facts dd{margin:0}
+
+/* Dialogs */
+dialog{background:var(--paper);border:1px solid var(--brass-dark);box-shadow:0 0 0 4px var(--paper),0 0 0 5px var(--line),0 18px 40px #2a1d0f55}
+dialog::backdrop{background:#24190f80}
+dialog h2{font-family:var(--display);font-size:20px;letter-spacing:.03em}
+dialog.wide{width:min(760px,calc(100vw - 26px))}
+dialog .fields{max-width:none}
+.field-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.detail-set{border:1px solid var(--line);border-radius:5px;padding:12px 14px 14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0;background:#fbf6ea}
+.detail-set[hidden]{display:none}
+.detail-set legend{font-family:var(--display);font-size:14px;letter-spacing:.04em;padding:0 6px;color:var(--brass-dark)}
+.detail-set textarea{min-height:62px}
+.placement{border-top:1px dashed var(--line);padding-top:10px;display:grid;gap:12px}
+.placement[open]{gap:12px}
+.placement summary{cursor:pointer;font-weight:600;color:var(--strong)}
+.placement>*+*{margin-top:12px}
+.kbd{font:12px ui-monospace,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:2px 7px;background:var(--white);white-space:nowrap;justify-self:start}
+.shortcut-list{display:grid;grid-template-columns:auto 1fr;gap:9px 14px;align-items:center;font-size:14px}
+.toast{background:var(--soot);color:#f1e3c4;border:1px solid var(--brass)}
+
+/* Character sheets and place cards */
+.page-meter{max-width:420px;margin:0 0 18px}
+.sheet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(285px,100%),1fr));gap:16px}
+.sheet{gap:13px}
+.sheet-head{display:flex;gap:13px;align-items:center}
+.sheet-head small{display:block;line-height:1.35;margin-top:2px}
+.sheet-head>div{flex:1;min-width:0}
+.sheet-head h2{font-size:18px;line-height:1.2}
+.monogram{width:46px;height:46px;flex:none;border-radius:50%;display:grid;place-items:center;font:700 16px var(--display);color:#21160a;background:radial-gradient(circle at 35% 30%,#ebcc8c,#a98242);border:2px solid var(--brass-dark);box-shadow:inset 0 0 0 2px #f3dca8}
+.badge{display:inline-block;margin-bottom:3px;font:10.5px ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--line);border-radius:20px;color:var(--brass-dark);background:#f6ead0;align-self:start}
+.sheet dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:0;font-size:14px}
+.sheet dt{color:var(--muted);font-weight:600}
+.sheet dd{margin:0;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.meter-wrap{display:grid;gap:5px}
+.meter-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.meter{height:6px;background:#eadcbf;border-radius:4px;overflow:hidden}
+.meter span{display:block;height:100%;background:linear-gradient(90deg,var(--verdigris),#64998e);transition:width .25s}
+.empty-state{text-align:center;padding:42px 20px;justify-items:center;gap:10px}
+.empty-state p{max-width:420px}
+.empty-gear{font-size:34px;color:var(--brass);line-height:1}
+
+/* World bible */
+.world-layout{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;align-items:start}
+.world-index{position:sticky;top:16px;display:grid;gap:2px}
+.world-index .mono{margin:0 0 6px 10px}
+.world-index button{text-align:left;border-color:transparent;background:transparent;font-size:14px;padding:6px 10px;display:flex;justify-content:space-between;gap:8px}
+.world-index button:hover{background:#ecdfc2}
+.world-index small{color:var(--muted)}
+.world-index .meter-wrap{margin:12px 10px 0}
+.world-sections{display:grid;gap:18px;min-width:0}
+.world-section{display:grid;gap:14px;scroll-margin-top:16px;padding:22px 24px}
+.world-section h2{font-family:var(--display);font-size:17px;letter-spacing:.05em;padding-bottom:8px;border-bottom:1px solid #ecdfc4}
+.world-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.world-fields label{display:grid;gap:4px;font-weight:600;font-size:14px;align-content:start}
+.world-fields small{font-weight:400;font-size:12.5px}
+.world-fields textarea{min-height:78px;font-weight:400}
+.world-places{scroll-margin-top:16px;display:grid;gap:14px;margin-top:8px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.section-head h2{font-family:var(--display);font-size:20px;letter-spacing:.04em}
+
+@media(max-width:900px){.world-layout{grid-template-columns:1fr}.world-index{position:static;display:flex;flex-wrap:wrap;gap:4px}.world-index .mono{width:100%}.world-index button{border-color:var(--line);background:var(--white)}.world-index .meter-wrap{width:100%;margin:6px 0 0}.world-fields{grid-template-columns:1fr}}
+@media(max-width:680px){.detail-set,.field-row{grid-template-columns:1fr}.top a.edition{display:none}.brand{font-size:18px}.world-section{padding:18px 16px}.heading::after{left:auto;right:12px;transform:none}}
+html[data-edition=phone] .world-layout{grid-template-columns:1fr}
+html[data-edition=phone] .world-index{position:static;display:flex;flex-wrap:wrap;gap:4px}
+html[data-edition=phone] .world-index .mono,html[data-edition=phone] .world-index .meter-wrap{width:100%}
+html[data-edition=phone] .world-index button{border-color:var(--line);background:var(--white)}
+html[data-edition=phone] .world-fields,html[data-edition=phone] .detail-set,html[data-edition=phone] .field-row{grid-template-columns:1fr}
+html[data-edition=phone] .top a.edition{display:none}
+html[data-edition=phone] .brand{font-size:18px}
+html[data-edition=phone] .project-cards{grid-template-columns:1fr}
+@media(max-width:680px){.project-cards{grid-template-columns:1fr}}
+.mobile-nav,html[data-edition=phone] .mobile-nav{background:#efe4cc;border-bottom-color:var(--line)}
+html[data-edition=phone] .projects-mode .mobile-nav{display:none}
+@media(max-width:680px){.projects-mode .mobile-nav{display:none}}
+
+/* ==========  Steampunk, second pass  ========== */
+:root{--leather:#261c15;--leather-2:#33261c;--cream:#f1e3c4;
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .3 0 0 0 0 .16 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.shell{background-image:var(--noise),radial-gradient(ellipse at 15% 0%,#fbf5e8aa,transparent 55%),radial-gradient(ellipse at 100% 100%,#d9c49c66,transparent 55%)}
+
+/* Top bar: soot with a riveted brass rail */
+.top{background-color:var(--soot);background-image:radial-gradient(circle,#b08a4a 1.5px,transparent 2px),var(--noise);background-size:26px 8px,240px 240px;background-repeat:repeat-x,repeat;background-position:13px 100%,0 0}
+
+/* Leather sidebar with a brass-plate active item */
+aside.nav{background-color:var(--leather);background-image:var(--noise),linear-gradient(90deg,transparent calc(100% - 6px),#00000040);border-right:2px solid var(--brass-dark)}
+.nav .mono{color:#c9a462;letter-spacing:.16em}
+.nav button{color:#e6d5b1}
+.nav button:hover{background:#3a2c20;border-color:#5d4a35}
+.nav button[aria-current=page]{background:linear-gradient(#e1c07c,#b08a4a);border-color:#6f5023;color:#21160a;box-shadow:inset 0 1px 0 #f6e2b0,0 1px 2px #0006}
+.nav-icon{color:#c9a462}
+.nav button[aria-current=page] .nav-icon{color:#3a2814}
+.mobile-nav,html[data-edition=phone] .mobile-nav{background:var(--leather);border-bottom:2px solid var(--brass-dark)}
+.mobile-nav .mono{color:#c9a462}
+.canvas-mode .nav{background-color:var(--leather);border-color:var(--brass-dark)}
+.canvas-mode .mobile-nav{background:var(--leather);border-color:var(--brass-dark)}
+
+/* Instrument-panel controls on the story map */
+.canvas-mode .canvas-tools,.canvas-mode .canvas-info{background:var(--leather);border:1px solid var(--brass-dark);box-shadow:0 0 0 3px #00000018,0 4px 12px #1a120b55}
+.canvas-mode .canvas-tools button:not(.primary),.canvas-mode .canvas-info button{background:transparent;color:var(--cream);border-color:#5d4a35}
+.canvas-mode .canvas-tools button:not(.primary):hover,.canvas-mode .canvas-info button:hover{background:#3a2c20;border-color:var(--brass)}
+.canvas-mode .canvas-tools .status{color:#e3c58a;font-family:ui-monospace,monospace;font-size:13px}
+.canvas-info h1{color:var(--cream)}
+.analysis-badge{background:var(--leather);border-color:var(--brass-dark)}
+.analysis-badge .status{color:#e3c58a}
+.canvas-mode .canvas-hint{background:#fffaf0e6}
+
+/* Brass corner brackets instead of dots */
+.cards>.card,.sheet-grid>.card,.world-section,.empty-state,.ledger,.plate{
+  --c:var(--brass);
+  background:
+    linear-gradient(var(--c),var(--c)) 6px 6px/16px 2px no-repeat,linear-gradient(var(--c),var(--c)) 6px 6px/2px 16px no-repeat,
+    linear-gradient(var(--c),var(--c)) calc(100% - 6px) 6px/16px 2px no-repeat,linear-gradient(var(--c),var(--c)) calc(100% - 6px) 6px/2px 16px no-repeat,
+    linear-gradient(var(--c),var(--c)) 6px calc(100% - 6px)/16px 2px no-repeat,linear-gradient(var(--c),var(--c)) 6px calc(100% - 6px)/2px 16px no-repeat,
+    linear-gradient(var(--c),var(--c)) calc(100% - 6px) calc(100% - 6px)/16px 2px no-repeat,linear-gradient(var(--c),var(--c)) calc(100% - 6px) calc(100% - 6px)/2px 16px no-repeat,
+    var(--white)}
+.heading h1{text-shadow:0 1px 0 #fff8}
+
+/* ===== Landing page ===== */
+.projects-mode main{max-width:none;padding:0}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;gap:20px;padding:56px clamp(24px,6vw,84px) 50px;
+  background-color:#1c140e;background-image:var(--noise),radial-gradient(ellipse at 72% 45%,#5a3d2266,transparent 60%),radial-gradient(ellipse at 10% 100%,#3a261655,transparent 50%),
+    linear-gradient(#b08a4a10 1px,transparent 1px),linear-gradient(90deg,#b08a4a10 1px,transparent 1px);
+  background-size:240px 240px,auto,auto,32px 32px,32px 32px;color:var(--cream);border-bottom:3px double var(--brass);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:14px;border:1px solid #b08a4a55;pointer-events:none;
+  background:linear-gradient(var(--brass),var(--brass)) 0 0/26px 2px no-repeat,linear-gradient(var(--brass),var(--brass)) 0 0/2px 26px no-repeat,
+    linear-gradient(var(--brass),var(--brass)) 100% 0/26px 2px no-repeat,linear-gradient(var(--brass),var(--brass)) 100% 0/2px 26px no-repeat,
+    linear-gradient(var(--brass),var(--brass)) 0 100%/26px 2px no-repeat,linear-gradient(var(--brass),var(--brass)) 0 100%/2px 26px no-repeat,
+    linear-gradient(var(--brass),var(--brass)) 100% 100%/26px 2px no-repeat,linear-gradient(var(--brass),var(--brass)) 100% 100%/2px 26px no-repeat}
+.hero-copy{position:relative;z-index:1;display:grid;gap:16px;max-width:560px}
+.hero-kicker{font:12px ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:#c9a462}
+.hero-title{font-family:var(--display);font-size:clamp(50px,7.4vw,96px);line-height:.95;letter-spacing:.02em;
+  background:linear-gradient(180deg,#f8e2a8 0%,#d9ae62 48%,#8d652c 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 0 #0009)}
+.ornament{display:flex;align-items:center;gap:12px;color:var(--brass);max-width:360px}
+.ornament span{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--brass))}
+.ornament span:last-child{background:linear-gradient(90deg,var(--brass),transparent)}
+.ornament b{font-weight:400;font-size:15px}
+.hero-lede{font-family:var(--serif);font-size:clamp(17px,1.6vw,20px);line-height:1.55;color:#e4d3ae}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.hero-actions button{padding:12px 20px;font-size:16px}
+.hero-actions button:not(.primary){background:transparent;color:var(--cream);border-color:var(--brass)}
+.hero-actions button:not(.primary):hover{background:#3a2c20}
+.hero-art{position:relative;z-index:1}
+.hero-art svg{width:100%;max-width:600px;display:block;margin:auto;filter:drop-shadow(0 10px 18px #0008)}
+.thread{stroke:#b3402b;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.gear{transform-box:view-box}
+.g-big{animation:spin 36s linear infinite}
+.g-mid{animation:spin 20s linear infinite reverse}
+.g-small{animation:spin 14s linear infinite reverse}
+.needle{animation:needle 4.5s ease-in-out infinite}
+.steam circle{animation:steam 3.2s ease-out infinite;opacity:0}
+.steam circle:nth-child(2){animation-delay:1.1s}
+.steam circle:nth-child(3){animation-delay:2.1s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes needle{0%,100%{transform:rotate(-6deg)}40%{transform:rotate(14deg)}55%{transform:rotate(9deg)}70%{transform:rotate(18deg)}}
+@keyframes steam{0%{opacity:0;transform:translateY(0) scale(.6)}20%{opacity:.55}100%{opacity:0;transform:translateY(-46px) scale(1.8)}}
+@media(prefers-reduced-motion:reduce){.gear,.needle,.steam circle{animation:none}.steam circle{opacity:.3}}
+
+.plates{max-width:1180px;margin:-34px auto 0;padding:0 clamp(16px,4vw,40px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;position:relative;z-index:2}
+.plate{border:1px solid var(--line);border-radius:6px;padding:22px 20px 20px;display:grid;gap:8px;align-content:start;box-shadow:inset 0 0 0 3px var(--white),inset 0 0 0 4px #ecdfc4,0 6px 16px #3a2a1626}
+.plate h2{font-family:var(--display);font-size:15.5px;letter-spacing:.05em}
+.plate p{font-size:14px;color:var(--muted)}
+.medallion{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;color:#2b1d0e;background:radial-gradient(circle at 35% 30%,#f1d390,#b08a4a 60%,#7d5d2a);border:1px solid #5e431c;box-shadow:inset 0 0 0 3px #e7c785,inset 0 0 0 4px #7d5d2a,0 2px 4px #0003}
+.medallion svg{width:26px;height:26px}
+
+.library{max-width:1180px;margin:0 auto;padding:46px clamp(16px,4vw,40px) 60px}
+.library-head{display:grid;justify-items:center;text-align:center;gap:6px;margin-bottom:24px}
+.library-head h2{font-family:var(--display);font-size:clamp(24px,3vw,32px);letter-spacing:.04em}
+.ornament.small{width:260px}
+.ledger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:18px}
+.ledger{border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 2px 6px #3a2a161f}
+.ledger-plate{display:flex;justify-content:space-between;padding:9px 16px;background:linear-gradient(#dcb874,#a98242);border-bottom:1px solid #6f5023;font:11px ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#2b1d0e;box-shadow:inset 0 1px 0 #f5dfa8}
+.ledger-body{padding:18px 20px 20px;display:grid;gap:14px}
+.ledger-body h3{font-family:var(--serif);font-size:23px}
+.ledger-stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:4px;background:#fbf4e4}
+.ledger-stats div{display:grid;justify-items:center;padding:8px 4px}
+.ledger-stats div+div{border-left:1px solid var(--line)}
+.ledger-stats strong{font:700 22px var(--display);color:var(--brass-dark)}
+.ledger-stats small{font-size:12px;color:var(--muted)}
+.ledger-status{font-size:14px;color:var(--verdigris);font-weight:600}
+.ledger-status.warn{color:var(--red)}
+.ledger-new{display:grid;place-items:center;align-content:center;gap:8px;min-height:240px;border:2px dashed #c2a774;border-radius:6px;background:#fbf4e488;color:var(--ink);text-align:center;padding:24px}
+.ledger-new:hover{background:#f6ead0;border-color:var(--brass)}
+.ledger-new-mark{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font:400 30px var(--display);color:#2b1d0e;background:radial-gradient(circle at 35% 30%,#f1d390,#b08a4a 60%,#7d5d2a);border:1px solid #5e431c}
+.ledger-new strong{font-family:var(--display);font-size:16px;letter-spacing:.04em}
+.ledger-new small{color:var(--muted);max-width:240px}
+
+@media(max-width:960px){.plates{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding:40px 24px 54px;text-align:left}.hero-art svg{max-width:420px}}
+@media(max-width:480px){.plates{grid-template-columns:1fr}}
+html[data-edition=phone] .hero{grid-template-columns:1fr;padding:36px 22px 52px}
+html[data-edition=phone] .hero-art svg{max-width:360px}
+html[data-edition=phone] .plates{grid-template-columns:1fr}
+
+html[data-edition=phone] .projects-mode main{padding:0}
+@media(max-width:680px){.projects-mode main{padding:0}}
+@media(max-width:480px){.plate{grid-template-columns:auto 1fr;column-gap:14px;row-gap:2px;padding:16px}.plate .medallion{grid-row:span 2;width:42px;height:42px}.plate .medallion svg{width:22px;height:22px}}
+html[data-edition=phone] .plate{grid-template-columns:auto 1fr;column-gap:14px;row-gap:2px;padding:16px}
+html[data-edition=phone] .plate .medallion{grid-row:span 2;width:42px;height:42px}
+html[data-edition=phone] .plates{gap:10px}
+
+
+/* ==========  Flat finish  ==========
+   Same steampunk palette, but every surface is a single flat colour:
+   no gradients, shadows, glows, bevels or textures. */
+*,*::before,*::after{box-shadow:none !important;text-shadow:none !important}
+.hero-art svg,.hero-title{filter:none !important}
+.shell,aside.nav,.hero{background-image:none}
+.shell{background:var(--paper)}
+.top{background-color:var(--soot);background-image:radial-gradient(circle,#b08a4a 1.5px,transparent 2px);background-size:26px 8px;background-repeat:repeat-x;background-position:13px 100%}
+.hero{background-color:#1e1610;background-image:linear-gradient(#b08a4a14 1px,transparent 1px),linear-gradient(90deg,#b08a4a14 1px,transparent 1px);background-size:32px 32px}
+.hero-title{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#d4a95c}
+.ornament span,.ornament span:last-child{background:#b08a4a88}
+button.primary,.nav button[aria-current=page],#aiButton.ready{background:#c29a55;border-color:var(--brass-dark);color:#21160a}
+button.primary:hover{background:#cfa862}
+.medallion,.ledger-new-mark,.monogram{background:#c29a55;border:2px solid var(--brass-dark);color:#21160a}
+.ledger-plate{background:#c9a462}
+.meter span{background:var(--verdigris)}
+.hero-actions button:not(.primary){background:transparent}
+
+/* Header tools on the dark bar */
+.top-tools button{background:transparent;border-color:#5d4c38;color:#f1e3c4}
+.top-tools button:hover{background:#3b2e22;border-color:var(--brass)}
+.top-tools button:disabled,.top-tools button:disabled:hover{background:transparent;border-color:#5d4c38;color:#f1e3c4}
+.top-tools .edition{display:inline !important;color:#e3c58a}
+@media(max-width:680px){.top-tools .edition{font-size:12px}}
+html[data-edition=phone] .top-tools .edition{font-size:12px}
+
+/* AI badge and tabs */
+.analysis-badge button:not(.primary){background:transparent;color:var(--cream);border-color:#5d4a35}
+.analysis-badge button:not(.primary):hover{background:#3a2c20;border-color:var(--brass)}
+.tabs button{background:var(--white);border-color:var(--line)}
+.tabs button[aria-current=page]{background:var(--white);border-color:var(--brass);border-bottom:3px solid var(--brass);font-weight:650}
+.world-section .section-head{border-bottom:1px solid #ecdfc4;padding-bottom:8px}
+.world-section .section-head h2{border:0;padding:0;font-size:17px}
+.ai-note{background:#f6ead0;border-color:var(--line)}
+.evidence{background:#fbefe8}
+.pick{background:var(--white)}
+.page-meter{margin:0 0 18px}
+.ai-status{font-size:14px;border:1px solid var(--line);border-radius:var(--radius);padding:8px 10px;background:var(--white)}
+.ai-status.ok{border-color:var(--verdigris);color:var(--verdigris);font-weight:600}
+.ai-status.warn{border-color:#c9a462;background:#f6ead0}
+.ai-status code{font-size:13px}
+.own-key{display:grid;gap:10px}
+.own-key[open]{padding-bottom:4px}
+.own-key summary{cursor:pointer;font-weight:600;color:var(--strong)}
+.own-key>*+*{margin-top:10px}
+.top-tools button{white-space:nowrap}
+@media(max-width:680px){.top{gap:8px}.brand{font-size:17px;gap:6px}.brand .mark,.brand .mark svg{width:22px;height:22px}}
+html[data-edition=phone] .top{gap:8px}
+html[data-edition=phone] .brand{font-size:17px;gap:6px}
+html[data-edition=phone] .brand .mark,html[data-edition=phone] .brand .mark svg{width:22px;height:22px}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top"><div class="brand"><span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12.5" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="3.927 3.927"/><circle cx="16" cy="16" r="10.6" fill="currentColor"/><circle cx="16" cy="16" r="6.4" fill="none" stroke="#241c15" stroke-width="1.4"/><circle cx="16" cy="16" r="2.6" fill="#241c15"/></svg></span>UnStuck</div><span class="top-project" id="projectName"></span>
+<div class="top-tools"><button type="button" data-action="undo" id="undoButton" aria-label="Undo">↶</button><button type="button" data-action="redo" id="redoButton" aria-label="Redo">↷</button><button type="button" data-action="ai-settings" id="aiButton" title="AI settings">✦ AI</button><button type="button" data-action="shortcuts" aria-label="Keyboard shortcuts" title="Keyboard shortcuts">?</button><a class="edition" id="edition"></a></div></header>
+<div class="layout"><aside class="nav"><p class="mono">Workspace</p><nav aria-label="Sections" id="navigation"></nav></aside>
+<div class="mobile-nav"><label class="mono" for="mobileNavigation">Workspace</label><select id="mobileNavigation"></select></div>
+<main id="screen"></main></div>
+</div>
+<dialog id="dialog"></dialog>
+<div class="toast" role="status" id="toast"></div>
+<script>
+const $ = selector => document.querySelector(selector);
+const symbols = ['▤','⌘','◍','▥','✓'];
+const pages = [
+  ['projects','Projects','Choose a project to open its writing workspace.'],
+  ['map','Story Map','Follow the story from setup to payoff.'],
+  ['worldbuilding','Worldbuilding','Fill in character sheets, places and the rules of your world.'],
+  ['organize','Organize','Compare story material by category.'],
+  ['finalize','Finalize','Review the relationships and save a version of your story.']
+];
+const characterRoles = ['Protagonist','Deuteragonist','Antagonist','Supporting','Mentor','Love interest','Foil','Minor','Group'];
+const characterFields = [
+  ['role','Role','select',characterRoles],
+  ['age','Age','text','e.g. 46'],
+  ['occupation','Occupation','text','What they do all day'],
+  ['appearance','Appearance','textarea','Build, clothing, distinguishing marks'],
+  ['personality','Personality','textarea','Temperament, habits, contradictions'],
+  ['want','Want (outer goal)','textarea','What they consciously pursue'],
+  ['need','Need (inner truth)','textarea','What they must learn or accept'],
+  ['flaw','Flaw & fear','textarea','What holds them back'],
+  ['backstory','Backstory','textarea','The wound or formative events'],
+  ['arc','Arc','textarea','Who they are at the start vs. the end'],
+  ['relationships','Relationships','textarea','Ties and tensions with other characters'],
+  ['voice','Voice & speech','textarea','Vocabulary, rhythm, catchphrases']
+];
+const locationFields = [
+  ['placeType','Type','select',['Settlement','Region','Building','Natural feature','Realm / country','Vehicle / vessel','Other']],
+  ['region','Where it is','text','Region, or position relative to other places'],
+  ['era','Era & time','text','When the story visits it'],
+  ['sensory','Sights, sounds & smells','textarea','Details a reader can feel'],
+  ['people','Who lives or works here','textarea',''],
+  ['customs','Local customs & rules','textarea',''],
+  ['significance','Role in the story','textarea','Which beats happen here and why']
+];
+const detailFields = {Characters:characterFields, Locations:locationFields};
+const worldSections = [
+  ['Foundations',[['premise','Premise & tone','What this world feels like, in a line or two'],['era','Era & time period',''],['genre','Genre conventions','What readers will expect']]],
+  ['Geography',[['geography','Landscape & landmarks',''],['climate','Climate & seasons','']]],
+  ['Society',[['politics','Power & politics','Who rules and how decisions are made'],['economy','Economy & trade',''],['classes','Social classes & roles',''],['family','Family & kinship','']]],
+  ['Culture',[['beliefs','Beliefs & religion',''],['customs','Customs, rituals & festivals',''],['language','Language & naming',''],['daily','Food, dress & daily life','']]],
+  ['Systems',[['technology','Technology',''],['magic','Magic or special rules','Leave empty for a realistic setting'],['limits','Costs & limits','What the rules forbid: a source of conflict']]],
+  ['History',[['history','Key past events',''],['tensions','Ongoing tensions','']]],
+  ['Reference',[['glossary','Glossary','One term per line: term — meaning'],['inspiration','Sources & inspiration','']]]
+];
+const sampleDetails = {
+  'thinh':{role:'Protagonist',age:'46',occupation:'Rice farmer; keeper of the family altar',appearance:'Sun-darkened and wiry. Wears his father’s old shirt to every ritual.',personality:'Dutiful and proud. Slow to speak and slower to forgive.',want:'Keep every field and hold his father’s giỗ the way it has always been held.',need:'Accept that honouring the dead cannot cost the living their future.',flaw:'Mistakes control for respect. Fears being the son who lost the land.',backstory:'Stayed in Rạch Sen when his brother left and has run the farm since their father died.',arc:'From guarding tradition alone to sharing it with his siblings.',relationships:'Resents Lộc’s absence. Relies on Hạnh but rarely thanks her.',voice:'Short sentences and old proverbs. Never raises his voice.'},
+  'loc':{role:'Deuteragonist',age:'40',occupation:'Sales manager, Mekong Shrimp Co.',personality:'Charming, restless, quick to make a joke when cornered.',want:'Sell the land, clear the debts and win his brother’s respect.',need:'Admit that leaving was also a choice to stop belonging.',flaw:'Treats every problem as a deal. Fears being called a traitor to the family.',relationships:'Competes with Thịnh. Protective of Hạnh in his own clumsy way.',voice:'Saigon slang, numbers and prices.'},
+  'hanh':{role:'Supporting',age:'32',occupation:'Seamstress; cared for her mother',personality:'Patient, observant, privately stubborn.',want:'Keep the house she has lived in all her life.',need:'Claim a life of her own, not just a duty.',flaw:'Says yes to everyone. Fears being left alone in an empty house.',arc:'From the family’s quiet helper to the one who decides.',relationships:'The bridge between her brothers. Inherits the altar her mother chose for her.'},
+  'ba-sau':{role:'Mentor',occupation:'Matriarch',want:'A family that keeps the altar together.',relationships:'Chose Hạnh over custom. Her wishes set the plot in motion.'},
+  'clan-elders':{role:'Group',occupation:'Clan head and elders',want:'Keep ancestral land inside the Nguyễn family.'},
+  'shrimp-company':{role:'Group',occupation:'Aquaculture company',want:'Turn canal-side rice land into shrimp ponds.'},
+  'rach-sen':{placeType:'Settlement',region:'Mekong Delta, southern Vietnam',era:'Late 1990s',sensory:'Incense smoke, wet earth, frogs at night, karaoke drifting from the café.',people:'Rice farmers, fishers and elderly parents whose children work in Saigon.',customs:'A giỗ for each parent every year. Elders settle disputes before the altar.',significance:'Every beat happens here.'},
+  'rice-fields':{placeType:'Natural feature',region:'Around the family house, along the canal',significance:'The land itself: what is being fought over.'},
+  'seasons':{placeType:'Other',era:'August to March',significance:'Sets the story’s clock from flood to harvest to Tết.'}
+};
+const sampleWorld = {
+  premise:'A quiet family drama about land, grief and duty in a Mekong Delta hamlet.',era:'Late 1990s',genre:'Literary realism. No magic.',
+  geography:'A flat delta of rice paddies cut by canals. Saigon is a long bus ride away.',climate:'Flood season from August to November; harvests in December and March.',
+  politics:'Clan elders hold moral authority over family matters.',economy:'Rice and fishing. Shrimp ponds are starting to replace paddies along the canals.',
+  family:'The eldest son normally keeps the altar and the hương hỏa land. Married daughters join their husband’s family.',beliefs:'Ancestor worship at household altars.',
+  customs:'Giỗ death anniversaries, Tết, cúng cơm mới, and up to three years of mourning.',language:'Southern birth-order names: Hai, Ba, Tư … Út for the youngest.',
+  limits:'Selling hương hỏa land breaks a duty to the ancestors.',tensions:'Land versus debt; tradition versus the young leaving for the city.',
+  glossary:'Giỗ — death anniversary\nHương hỏa — land that funds ancestral rites\nÚt — the youngest child'
+};
+const categories = ['Plot','Characters','Events','Locations','Conflicts'];
+const incenseItems = [
+  {id:'opening-flood',category:'Events',title:'The funeral in flood season',order:0,body:'Bà Sáu dies while the rice fields are underwater. Lộc returns from Saigon for the first time in ten years. A week after the funeral, the family hosts a new-rice offering for the hamlet.'},
+  {id:'last-wishes',category:'Events',title:'Bà Sáu’s last wishes',order:2,body:'Before the Nguyễn clan elders, the family learns that Bà Sáu left the ancestral altar and hương hỏa land to her youngest daughter, Út Hạnh. The elders nod and light incense.'},
+  {id:'shrimp-offer',category:'Events',title:'The shrimp company’s offer',order:4,body:'Lộc brings an offer from Mekong Shrimp Co. Thịnh refuses because the land funds their father’s yearly giỗ, with thirty tables and a hired band. Lộc carried their father’s coffin three years ago.'},
+  {id:'wedding',category:'Events',title:'The wedding during mourning',order:6,body:'Two months after the funeral, Thịnh’s son marries at a large wedding with red decorations and karaoke until midnight. The neighbors eat and congratulate the family.'},
+  {id:'tet',category:'Events',title:'The agreement at Tết',order:8,body:'The siblings sell half the land and keep the half with the family graves. Lộc returns to Saigon. Thịnh lights incense alone while the fields turn green for spring.'},
+  {id:'rach-sen',category:'Locations',parent:'opening-flood',title:'Rạch Sen',body:'A fictional rice-farming hamlet in the late-1990s Mekong Delta. Young workers often leave for Saigon and return for Tết and death anniversaries.'},
+  {id:'rice-fields',category:'Locations',parent:'opening-flood',title:'Rice fields and canals',body:'Families grow rice and fish the canals. The flood season puts the fields underwater from August to November.'},
+  {id:'family-money',category:'Conflicts',parent:'shrimp-offer',title:'The Nguyễn family’s debts',body:'A bad harvest forced the family to mortgage part of its land. It sold its last buffalo the previous year.'},
+  {id:'huong-hoa',category:'Conflicts',parent:'last-wishes',title:'Hương hỏa land',body:'In Rạch Sen, the eldest son normally keeps the altar and the land that funds ancestral rites. Daughters who marry join their spouse’s family.'},
+  {id:'birth-order',category:'Conflicts',parent:'last-wishes',title:'Birth-order names',body:'In the story’s Southern naming custom, the eldest is called Hai, followed by Ba and Tư. The youngest is called Út.'},
+  {id:'clan-elders',category:'Characters',parent:'last-wishes',title:'Nguyễn clan elders',body:'The clan head and elders settle disputes before the family altar. They want to keep the ancestral land within the family.'},
+  {id:'ancestor-worship',category:'Conflicts',parent:'tet',title:'Ancestor worship',body:'Households keep altars for the dead and hold a giỗ for each parent every year.'},
+  {id:'mourning',category:'Conflicts',parent:'wedding',title:'Mourning period',body:'Children may mourn a parent for up to three years. The hamlet expects no weddings, loud celebrations, or red at Tết during that time.'},
+  {id:'seasons',category:'Locations',parent:'opening-flood',title:'Flood and harvest calendar',body:'The fields flood from August through November. Rice is harvested after the water recedes in December, and again in March.'},
+  {id:'rice-offering',category:'Conflicts',parent:'opening-flood',title:'Cúng cơm mới',body:'Rạch Sen thanks its ancestors for the first harvest in the ninth lunar month, around October.'},
+  {id:'thinh',category:'Characters',parent:'last-wishes',title:'Ba Thịnh',body:'The eldest son, 46, farms the ancestral land and tends the altar. He wants to preserve his father’s arrangements and needs to consider what his siblings want.'},
+  {id:'loc',category:'Characters',parent:'shrimp-offer',title:'Tư Lộc',body:'The middle son, 40, works for the shrimp company in Saigon. He wants to clear the family’s debts by selling and wants his brother’s respect.'},
+  {id:'ba-sau',category:'Characters',parent:'opening-flood',title:'Bà Sáu',body:'The siblings’ mother dies during the autumn flood season. She appears through memories and her last wishes.'},
+  {id:'hanh',category:'Characters',parent:'last-wishes',title:'Út Hạnh',body:'The youngest daughter, 32, stayed home to care for her mother. She wants to keep the house and needs to make room for a life of her own.'},
+  {id:'shrimp-company',category:'Characters',parent:'shrimp-offer',title:'Mekong Shrimp Co.',body:'The company wants to turn rice land along the canal into shrimp ponds.'},
+  {id:'family-choice',category:'Conflicts',parent:'tet',title:'Keep the land or sell it?',body:'After their mother dies, three siblings must decide whether to keep the land that funds the family’s rituals or sell it to pay their debts.'}
+];
+const demoIssues = [
+  {id:'loc-timeline',title:'Lộc’s return dates conflict',question:'When did Lộc last come home?',
+    body:'The opening says Lộc hasn’t been home for ten years. In the offer scene, he carried his father’s coffin in Rạch Sen three years ago.',
+    from:'opening-flood',to:'shrimp-offer',order:3,field:'locTimelineFix',beat:'Lộc’s last visit',
+    options:[['Clarify the last visit','Say this is Lộc’s first visit since his father’s funeral three years ago.'],['Keep the ten-year absence','Give the coffin scene to someone who was in Rạch Sen three years ago.']]}
+];
+// Plot holes come from the sample story's demo data and from AI scans (stored per project).
+const allIssues = p => [...(p?.sampleKey==='incense-land' ? demoIssues : []), ...(p?.aiIssues ?? [])];
+const issueFor = key => allIssues(project()).find(issue=>issue.id===key);
+const openIssues = p => allIssues(p).filter(issue=>!p[issue.field] &&
+  p.items.some(item=>item.id===issue.from) && p.items.some(item=>item.id===issue.to));
+function updateIssueFix(p,item,body) {
+  const issue = issueFor(item?.fixesIssue);
+  if (issue && !item.alternate) p[issue.field] = body;
+}
+const phone = document.documentElement.dataset.edition === 'phone';
+const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+const id = () => globalThis.crypto?.randomUUID?.() ?? String(Date.now() + Math.random());
+const makeProject = name => ({id:id(),name,final:null,links:[],items:[]});
+let state;
+try { state = JSON.parse(localStorage.getItem('unstuck-v1')); } catch {}
+if (!Array.isArray(state?.projects)) state = {projects:[]};
+const isOldSample = entry => entry.demo || entry.sampleKey==='observatory';
+const oldSamples = state.projects.filter(isOldSample);
+if (oldSamples.length) {
+  state.retiredSamples = [...(state.retiredSamples ?? []),...oldSamples];
+  state.projects = state.projects.filter(entry=>!isOldSample(entry));
+}
+if (!state.projects.some(entry=>entry.sampleKey==='incense-land')) {
+  state.projects.unshift({...makeProject('The Incense Land'),sampleKey:'incense-land',items:incenseItems.map(item=>({...item}))});
+}
+let activeId;
+try { activeId = sessionStorage.getItem('unstuck-active'); } catch {}
+const project = () => state.projects.find(item => item.id === activeId);
+const sampleProject = state.projects.find(entry=>entry.sampleKey==='incense-land');
+if (sampleProject && !sampleProject.detailsV2) {
+  sampleProject.items.forEach(item=>{ if (!item.details && sampleDetails[item.id]) item.details = {...sampleDetails[item.id]}; });
+  sampleProject.world ??= {...sampleWorld};
+  sampleProject.detailsV2 = true;
+}
+const modKey = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent) ? '⌘' : 'Ctrl';
+
+// Undo / redo: every save() that changes the data records the previous snapshot.
+const undoHistory = {undo:[],redo:[],current:null,limit:100};
+function persist() { try { localStorage.setItem('unstuck-v1',undoHistory.current); } catch {} }
+function save() {
+  const json = JSON.stringify(state);
+  if (undoHistory.current !== null && json !== undoHistory.current) {
+    undoHistory.undo.push(undoHistory.current);
+    if (undoHistory.undo.length > undoHistory.limit) undoHistory.undo.shift();
+    undoHistory.redo = [];
+  }
+  undoHistory.current = json;
+  persist();
+  updateHistoryButtons();
+}
+function updateHistoryButtons() {
+  const undo = $('#undoButton'), redo = $('#redoButton');
+  if (!undo) return;
+  undo.disabled = !undoHistory.undo.length;
+  redo.disabled = !undoHistory.redo.length;
+  undo.title = 'Undo ('+modKey+'+Z)';
+  redo.title = 'Redo ('+modKey+'+Shift+Z)';
+}
+function restore(direction) {
+  const from = direction === 'undo' ? undoHistory.undo : undoHistory.redo;
+  const to = direction === 'undo' ? undoHistory.redo : undoHistory.undo;
+  if (!from.length) { notify(direction === 'undo' ? 'Nothing to undo.' : 'Nothing to redo.'); return; }
+  to.push(undoHistory.current);
+  undoHistory.current = from.pop();
+  state = JSON.parse(undoHistory.current);
+  persist();
+  if ($('#dialog').open) $('#dialog').close();
+  const p = project();
+  if (selected && !(p?.items.some(item=>item.id===selected) || (p && openIssues(p).some(issue=>issue.id===selected)))) selected = null;
+  render();
+  updateHistoryButtons();
+  notify(direction === 'undo' ? 'Undone.' : 'Redone.');
+}
+function openProject(entry) {
+  activeId = entry.id;
+  try { sessionStorage.setItem('unstuck-active',activeId); } catch {}
+  selected = null;
+  popupMode = 'details';
+  Object.assign(timeline,{x:0,y:0,z:1,ax:.25,ay:-.35});
+  save();
+  go('map');
+}
+let page, selected = null, graph, toastTimer, popupMode = 'details', wbTab = 'characters';
+let navHidden = false, canvasTool = 'pan';
+let popupSize, popupResize;
+const resizeGrip = '<div class="popup-footer"><button type="button" class="resize-grip" data-resize-popup aria-label="Resize node popup with drag or arrow keys" title="Drag to resize">◢</button></div>';
+function applyPopupSize() {
+  const popup = $('.node-popup:not([hidden]), .organize-popup');
+  if (!popup || !popupSize) return;
+  popup.style.setProperty('--popup-width',popupSize.width+'px');
+  popup.style.setProperty('--popup-height',popupSize.height+'px');
+}
+function resizePopup(popup,width,height) {
+  const shell = $('.shell');
+  const maxWidth = Math.min(560,shell.clientWidth-20);
+  const maxHeight = Math.max(130,Math.min(550, popup.classList.contains('node-popup') ? shell.clientHeight-180 : window.innerHeight*.55));
+  popupSize = {
+    width:Math.max(Math.min(190,maxWidth),Math.min(maxWidth,width)),
+    height:Math.max(130,Math.min(maxHeight,height))
+  };
+  applyPopupSize();
+  fitDescriptionEditor();
+  graph?.draw();
+}
+let pendingFocus;
+const compact = () => phone || window.innerWidth <= 680;
+function canvasLayout(surface) {
+  const w = surface.clientWidth, h = surface.clientHeight;
+  const left = compact() || navHidden ? 0 : 186;
+  const factor = compact() ? Math.min(1,Math.max(.65,(h-240)/430)) : Math.min(1,Math.max(.45,(w-left-175)/560));
+  return {x:(w+left)/2,y:(h+50)/2,factor,left};
+}
+const timeline = {x:0,y:0,z:1,ax:.25,ay:-.35};
+function currentPage() {
+  const requested = location.hash.slice(1);
+  if (!project()) return 'projects';
+  if (['board','analyze','assist','experiment','refine'].includes(requested)) return 'map';
+  if (['characters','world'].includes(requested)) return 'worldbuilding';
+  return pages.find(entry=>entry[0]===requested)?.[0] || 'projects';
+}
+function go(key) { if (location.hash === '#'+key) render(); else location.hash = '#'+key; }
+save();
+function notify(message, duration = 2700) {
+  $('#toast').textContent = message;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => $('#toast').textContent = '',duration);
+}
+function button(label, action, primary = false) {
+  return '<button type="button" '+(primary ? 'class="primary" ' : '')+'data-action="'+escape(action)+'">'+escape(label)+'</button>';
+}
+function heading(title, description, actions = '') {
+  return '<p class="mono crumb">'+escape(page === 'projects' ? 'Workspace' : project().name)+'</p><div class="heading"><div><h1>'+title+'</h1><p class="muted">'+description+'</p></div><div class="actions">'+actions+'</div></div>';
+}
+function card(title, body, actions = '', label = '') {
+  return '<article class="card">'+(label ? '<span class="mono">'+escape(label)+'</span>' : '')+'<h2>'+escape(title)+'</h2><p class="muted">'+escape(body)+'</p><div class="actions">'+actions+'</div></article>';
+}
+function selectOptions(options, chosen) {
+  return options.map(option => '<option'+(option === chosen ? ' selected' : '')+'>'+escape(option)+'</option>').join('');
+}
+function dialog(title, fields, onSubmit, submit = 'Save', wide = false) {
+  const modal = $('#dialog');
+  modal.classList.toggle('wide',wide);
+  modal.innerHTML = '<form><h2>'+escape(title)+'</h2><div class="fields">'+fields+'</div><div class="actions">'+button('Cancel','cancel')+'<button class="primary">'+escape(submit)+'</button></div></form>';
+  modal.querySelector('form').onsubmit = async event => {
+    event.preventDefault();
+    const result = await onSubmit(new FormData(event.currentTarget));
+    if (result === false) return;
+    modal.close();
+    save();
+    render();
+  };
+  modal.showModal();
+}
+function detailInputs(category, item, current) {
+  return '<fieldset class="detail-set" data-category="'+category+'"'+(current===category ? '' : ' hidden')+'><legend>'+(category==='Characters' ? 'Character sheet' : 'Place details')+'</legend>'+
+    detailFields[category].map(([key,label,type,extra])=>{
+      const value = item?.details?.[key] ?? '';
+      const name = 'd_'+category+'_'+key;
+      const input = type==='select' ? '<select name="'+name+'"><option value="">Choose…</option>'+extra.map(option=>'<option'+(option===value ? ' selected' : '')+'>'+escape(option)+'</option>').join('')+'</select>' :
+        type==='textarea' ? '<textarea rows="2" name="'+name+'" placeholder="'+escape(extra)+'">'+escape(value)+'</textarea>' :
+        '<input name="'+name+'" value="'+escape(value)+'" placeholder="'+escape(extra)+'">';
+      return '<label>'+escape(label)+input+'</label>';
+    }).join('')+'</fieldset>';
+}
+const kindName = category => ({Characters:'character',Locations:'place',Unsorted:'idea'})[category] || 'note';
+function editItem(item, chosen = 'Unsorted') {
+  const p = project();
+  const index = p.items.length;
+  const current = item?.category || chosen;
+  const parents = p.items.filter(note=>note!==item && ['Plot','Events'].includes(note.category) && !note.alternate);
+  dialog((item ? 'Edit ' : 'New ')+kindName(current),
+    '<div class="field-row"><label>Title<input required maxlength="80" name="title" value="'+escape(item?.title)+'"></label>'+
+    '<label>Category<select name="category">'+selectOptions(['Unsorted',...categories],current)+'</select></label></div>'+
+    '<label>Notes<textarea name="body">'+escape(item?.body)+'</textarea></label>'+
+    Object.keys(detailFields).map(category=>detailInputs(category,item,current)).join('')+
+    '<div class="field-row"><label>Timeline order <small>For plot beats and events</small><input type="number" step="any" name="order" value="'+escape(item ? beatOrder(item,p) : index*2)+'"></label>'+
+    '<label>Attach flag to<select name="parent"><option value="">First beat</option>'+parents.map(note=>'<option value="'+escape(note.id)+'"'+(item?.parent===note.id ? ' selected' : '')+'>'+escape(note.title)+'</option>').join('')+'</select></label></div>'+
+    '<label>Reference<input name="file" type="file"></label>'+(item?.file ? '<small>Attached: '+escape(item.file)+'</small>' : ''),
+    async data => {
+      const file = data.get('file');
+      const updated = {title:data.get('title').trim(),body:data.get('body'),category:data.get('category')};
+      if (!updated.title) return false;
+      updated.order = Number(data.get('order'));
+      updated.parent = data.get('parent');
+      const fields = detailFields[updated.category];
+      if (fields) {
+        updated.details = {...(item?.details || {})};
+        fields.forEach(([key])=>{ updated.details[key] = String(data.get('d_'+updated.category+'_'+key) ?? '').trim(); });
+      }
+      updateIssueFix(p,item,updated.body);
+      if (file?.size) {
+        updated.file = file.name;
+        if (file.size <= 750000) {
+          updated.reference = await new Promise(resolve => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => resolve('');
+            reader.readAsDataURL(file);
+          });
+        } else { updated.reference = ''; notify('Saved the reference name. Prototype attachments are limited to 750 KB.'); }
+      }
+      if (item) Object.assign(item,updated);
+      else {
+        const entry = {id:id(),...updated};
+        p.items.push(entry);
+        if (page === 'map') pendingFocus = entry.id;
+      }
+    },item ? 'Save' : 'Create',true);
+  const select = $('#dialog select[name=category]');
+  select.addEventListener('change',()=>{
+    $('#dialog').querySelectorAll('.detail-set').forEach(set=>{ set.hidden = set.dataset.category !== select.value; });
+    $('#dialog h2').textContent = (item ? 'Edit ' : 'New ')+kindName(select.value);
+  });
+}
+function initials(title) {
+  return String(title).trim().split(/\s+/).slice(0,2).map(word=>word[0] || '').join('').toUpperCase();
+}
+function completeness(item, fields) {
+  const filled = fields.filter(([key])=>String(item.details?.[key] ?? '').trim()).length + (String(item.body ?? '').trim() ? 1 : 0);
+  return [filled, fields.length+1];
+}
+function meter(label, filled, total, id = '') {
+  const pct = total ? Math.round(filled/total*100) : 0;
+  return '<div class="meter-wrap"'+(id ? ' id="'+id+'"' : '')+'><div class="meter-label"><span>'+escape(label)+'</span><span>'+filled+'/'+total+'</span></div><div class="meter" role="progressbar" aria-label="'+escape(label)+'" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'"><span style="width:'+pct+'%"></span></div></div>';
+}
+function sheetCard(item, fields, badge, subtitle, rows) {
+  const [filled,total] = completeness(item,fields);
+  return '<article class="card sheet"><div class="sheet-head"><span class="monogram" aria-hidden="true">'+escape(initials(item.title))+'</span><div>'+(badge ? '<span class="mono">'+escape(badge)+'</span>' : '')+'<h2>'+escape(item.title)+'</h2>'+
+    (subtitle ? '<small class="muted">'+escape(subtitle)+'</small>' : '')+'</div></div>'+
+    '<dl>'+rows.map(([key,label])=>'<dt>'+escape(label)+'</dt><dd>'+(item.details?.[key] ? escape(item.details[key]) : '<span class="faint">Not yet written</span>')+'</dd>').join('')+'</dl>'+
+    meter('Sheet complete',filled,total)+
+    '<div class="actions">'+button('Open sheet','edit:'+item.id,true)+button('Show on map','map-focus:'+item.id)+'</div></article>';
+}
+function emptyState(title, body, actions) {
+  return '<div class="card empty-state"><h2>'+escape(title)+'</h2><p class="muted">'+escape(body)+'</p><div class="actions">'+actions+'</div></div>';
+}
+function worldCount(p, fields) {
+  return fields.filter(([key])=>String(p.world?.[key] ?? '').trim()).length;
+}
+function worldTotals(p) {
+  let filled = 0, total = 0;
+  worldSections.forEach(([,fields])=>{ filled += worldCount(p,fields); total += fields.length; });
+  return [filled,total];
+}
+function refreshWorldCounts() {
+  const p = project();
+  if (page !== 'worldbuilding' || !p) return;
+  worldSections.forEach(([,fields],i)=>{
+    const label = $('#world-count-'+i);
+    if (label) label.textContent = worldCount(p,fields)+'/'+fields.length;
+  });
+  const wrap = $('#world-meter');
+  if (wrap) wrap.outerHTML = meter('World notes',...worldTotals(p),'world-meter');
+}
+function worldbuildingContent(p, title, description) {
+  const tabs = [['characters','Characters',p.items.filter(item=>item.category==='Characters').length],['places','Places',p.items.filter(item=>item.category==='Locations').length],['world','World rules',worldTotals(p)[0]+'/'+worldTotals(p)[1]]];
+  const actions = wbTab==='characters' ? button(aiBusy==='characters' ? 'Reading the story…' : '✦ Find characters with AI','ai-characters')+button('+ Character','add:Characters',true) :
+    wbTab==='places' ? button('+ Place','add:Locations',true) : '';
+  let body;
+  if (wbTab==='characters') {
+    const rank = item => { const index = characterRoles.indexOf(item.details?.role); return index < 0 ? 99 : index; };
+    const people = p.items.filter(item=>item.category==='Characters').sort((a,b)=>rank(a)-rank(b));
+    const filled = people.reduce((sum,item)=>sum+completeness(item,characterFields)[0],0);
+    body = people.length ? '<div class="page-meter">'+meter('Cast development',filled,people.length*(characterFields.length+1))+'</div><div class="sheet-grid">'+people.map(item=>{
+        const d = item.details || {};
+        return sheetCard(item,characterFields,d.role,[d.age && 'Age '+d.age,d.occupation].filter(Boolean).join(' · '),[['want','Wants'],['need','Needs'],['flaw','Flaw']]);
+      }).join('')+'</div>' :
+      emptyState('No characters yet','Start with your protagonist: what do they want, and what stands in their way? Or let the AI read your notes and list the characters it finds.',button('+ Character','add:Characters',true)+button('✦ Find characters with AI','ai-characters'));
+  } else if (wbTab==='places') {
+    const places = p.items.filter(item=>item.category==='Locations');
+    body = places.length ? '<div class="sheet-grid">'+places.map(item=>sheetCard(item,locationFields,item.details?.placeType,item.details?.region,[['era','Era'],['customs','Customs'],['significance','Story role']])).join('')+'</div>' :
+      emptyState('No places yet','Add the settings where your scenes happen.',button('+ Place','add:Locations',true));
+  } else {
+    body = '<div class="page-meter">'+meter('World notes',...worldTotals(p),'world-meter')+'</div><div class="world-sections">'+worldSections.map(([name,fields],i)=>'<section class="card world-section"><div class="section-head"><h2>'+name+'</h2><small class="muted" id="world-count-'+i+'">'+worldCount(p,fields)+'/'+fields.length+'</small></div><div class="world-fields">'+
+      fields.map(([key,label,hint])=>'<label>'+escape(label)+'<textarea rows="3" data-world="'+key+'" placeholder="'+escape(hint)+'">'+escape(p.world?.[key])+'</textarea></label>').join('')+'</div></section>').join('')+'</div>';
+  }
+  return heading(title,description,actions)+'<div class="tabs" role="tablist" aria-label="Worldbuilding sections">'+
+    tabs.map(([key,label,count])=>'<button type="button" role="tab" data-action="wb-tab:'+key+'" aria-selected="'+(wbTab===key)+'"'+(wbTab===key ? ' aria-current="page"' : '')+'>'+label+' <small>'+count+'</small></button>').join('')+'</div>'+body;
+}
+const lineIcon = paths => '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+paths+'</svg>';
+const featurePlates = [
+  ['Story Map','Lay beats along a timeline and hang characters, places and conflicts from them.',lineIcon('<circle cx="6" cy="16" r="3"/><circle cx="16" cy="16" r="3"/><circle cx="26" cy="16" r="3"/><path d="M9 16h4M19 16h4M16 13V7M16 19v6"/><rect x="12" y="3" width="8" height="4" rx="1"/><rect x="12" y="25" width="8" height="4" rx="1"/>')],
+  ['Character sheets','Wants, needs, flaws, arcs and voice. AI can find the characters hiding in your notes.',lineIcon('<circle cx="16" cy="11" r="5"/><path d="M7 27c1-6 5-9 9-9s8 3 9 9"/><path d="M12 6l1.5-3h5L20 6"/>')],
+  ['World rules','Customs, politics, geography and rules, kept in one place your story can lean on.',lineIcon('<circle cx="16" cy="16" r="11"/><path d="M5 16h22M16 5c4 4 4 18 0 22M16 5c-4 4-4 18 0 22"/>')],
+  ['AI plot-hole engine','Reads your whole story, quotes the notes that clash, and lets you test a fix as a branch first.',lineIcon('<path d="M8 22c-4-6 2-14 8-10s4 12-2 10-4-10 4-12 10 6 6 12-12 4-10-2"/><path d="M25 25l4 4"/>')]
+];
+function ledgerCard(entry, index) {
+  const count = test => entry.items.filter(test).length;
+  const holes = openIssues(entry).length;
+  const stats = [[count(item=>['Plot','Events'].includes(item.category) && !item.alternate),'Beats'],[count(item=>item.category==='Characters'),'Characters'],[count(item=>item.category==='Locations'),'Places']];
+  return '<article class="ledger"><header class="ledger-plate"><span>'+(entry.sampleKey ? 'Sample story' : 'Story')+'</span><span>Nº '+String(index+1).padStart(3,'0')+'</span></header>'+
+    '<div class="ledger-body"><h3>'+escape(entry.name)+'</h3><div class="ledger-stats">'+stats.map(([n,label])=>'<div><strong>'+n+'</strong><small>'+label+'</small></div>').join('')+'</div>'+
+    '<p class="ledger-status'+(holes ? ' warn' : '')+'">'+(holes ? '◎ '+holes+' plot hole'+(holes===1 ? '' : 's')+' to untangle' : '✓ No open plot holes')+'</p>'+
+    '<div class="actions">'+button('Open story','open:'+entry.id,true)+button('Rename','rename:'+entry.id)+'</div></div></article>';
+}
+function gearSVG(cx, cy, teeth, ro, ri, fill, cls) {
+  const step = Math.PI*2/teeth, pt = (r,t) => (cx+r*Math.cos(t)).toFixed(1)+' '+(cy+r*Math.sin(t)).toFixed(1);
+  let d = '';
+  for (let i=0;i<teeth;i++) {
+    const a = i*step;
+    d += (i ? 'L' : 'M')+pt(ri,a)+'L'+pt(ro,a+step*.16)+'L'+pt(ro,a+step*.42)+'L'+pt(ri,a+step*.58);
+  }
+  const ring = ri*.76, hub = ri*.27;
+  let spokes = '';
+  for (let k=0;k<5;k++) { const t = k*Math.PI*2/5; spokes += '<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+ring*Math.cos(t)).toFixed(1)+'" y2="'+(cy+ring*Math.sin(t)).toFixed(1)+'"/>'; }
+  return '<g class="gear '+cls+'" style="transform-origin:'+cx+'px '+cy+'px"><path d="'+d+'Z" fill="'+fill+'" stroke="#2b1e12" stroke-width="1.4"/>'+
+    
+    '<circle cx="'+cx+'" cy="'+cy+'" r="'+ring+'" fill="#1c140d" stroke="#2b1e12"/>'+
+    '<g stroke="'+fill+'" stroke-width="'+(ri*.15).toFixed(1)+'" stroke-linecap="round">'+spokes+'</g>'+
+    '<circle cx="'+cx+'" cy="'+cy+'" r="'+hub+'" fill="'+fill+'" stroke="#2b1e12"/><circle cx="'+cx+'" cy="'+cy+'" r="'+(hub*.38).toFixed(1)+'" fill="#1c140d"/></g>';
+}
+function heroMachine(attrs = '') {
+  let knot = '';
+  for (let i=0;i<=200;i++) {
+    const t = i*Math.PI/100, r = 30+12*Math.cos(3*t);
+    knot += (i ? 'L' : 'M')+(96+r*Math.cos(2*t)).toFixed(1)+' '+(292+r*Math.sin(2*t)*.8).toFixed(1);
+  }
+  let ticks = '';
+  for (let i=0;i<=10;i++) {
+    const a = (-225+i*27)*Math.PI/180, r1 = i%5 ? 40 : 36;
+    ticks += '<line x1="'+(98+r1*Math.cos(a)).toFixed(1)+'" y1="'+(92+r1*Math.sin(a)).toFixed(1)+'" x2="'+(98+45*Math.cos(a)).toFixed(1)+'" y2="'+(92+45*Math.sin(a)).toFixed(1)+'"/>';
+  }
+  return '<svg '+attrs+' viewBox="0 0 520 380"><defs>'+
+    '<linearGradient id="brass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1d390"/><stop offset=".5" stop-color="#b48c4b"/><stop offset="1" stop-color="#6f5023"/></linearGradient>'+
+    '<linearGradient id="copper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e7ad7c"/><stop offset=".55" stop-color="#a5643a"/><stop offset="1" stop-color="#5c3219"/></linearGradient>'+
+    '<linearGradient id="pipe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d79a68"/><stop offset=".45" stop-color="#9b5a32"/><stop offset="1" stop-color="#4f2a14"/></linearGradient>'+
+    '<radialGradient id="face" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#fbf1da"/><stop offset="1" stop-color="#dcc79c"/></radialGradient></defs>'+
+    // pipes
+    '<path d="M98 150V222H230" fill="none" stroke="#9b5a32" stroke-width="15" stroke-linejoin="round"/>'+
+    '<rect x="150" y="86" width="180" height="12" fill="#9b5a32"/>'+
+    '<g fill="#b8924f" stroke="#2b1e12"><rect x="89" y="166" width="18" height="8" rx="2"/><rect x="170" y="213" width="8" height="18" rx="2"/><rect x="200" y="85" width="8" height="15" rx="2"/></g>'+
+    // steam
+    '<g class="steam" fill="#f3e5c3"><circle cx="262" cy="70" r="7"/><circle cx="270" cy="62" r="5"/><circle cx="258" cy="58" r="4"/></g>'+
+    '<rect x="255" y="78" width="14" height="10" fill="#b8924f" stroke="#2b1e12"/>'+
+    // thread: tangled on the left, straight on the right
+    '<path class="thread" d="'+knot+'" fill="none"/>'+
+    '<path class="thread" d="M126 300C170 300 190 268 228 250" fill="none"/>'+
+    gearSVG(300,200,18,104,90,'#b8924f','g-big')+
+    gearSVG(417,102,10,60,49,'#a8673d','g-mid')+
+    gearSVG(408,277,7,40,30,'#b8924f','g-small')+
+    '<path class="thread" d="M430 300L506 300" fill="none"/>'+
+    '<g transform="translate(470 300) rotate(8)"><path d="M0 4h40l8 9-8 9H0z" fill="#efe0bd" stroke="#6b5233"/><circle cx="7" cy="13" r="2" fill="#6b5233"/><text x="13" y="17" font-size="9" font-family="Georgia,serif" fill="#3a2a17">Act III</text></g>'+
+    // gauge
+    '<circle cx="98" cy="92" r="60" fill="#b8924f" stroke="#2b1e12" stroke-width="1.5"/>'+
+    '<circle cx="98" cy="92" r="50" fill="#f3e6c8" stroke="#6f5023" stroke-width="2"/>'+
+    '<path d="M'+(98+44*Math.cos(18*Math.PI/180)).toFixed(1)+' '+(92+44*Math.sin(18*Math.PI/180)).toFixed(1)+'A44 44 0 0 0 '+(98+44*Math.cos(-30*Math.PI/180)).toFixed(1)+' '+(92+44*Math.sin(-30*Math.PI/180)).toFixed(1)+'" stroke="#9c3a28" stroke-width="6" fill="none"/>'+
+    '<g stroke="#3a2a17" stroke-width="1.5">'+ticks+'</g>'+
+    '<text x="98" y="114" text-anchor="middle" font-size="7" letter-spacing="1.4" font-family="Georgia,serif" fill="#3a2a17">TENSION</text>'+
+    '<g class="needle" style="transform-origin:98px 92px"><path d="M98 92L132 70" stroke="#9c3a28" stroke-width="2.6" stroke-linecap="round"/></g>'+
+    '<circle cx="98" cy="92" r="5" fill="#b8924f" stroke="#2b1e12"/>'+
+    '<g fill="#2b1e12">'+[[60,50],[136,50],[60,134],[136,134]].map(([x,y])=>'<circle cx="'+x+'" cy="'+y+'" r="2"/>').join('')+'</g>'+
+    '</svg>';
+}
+function showShortcuts() {
+  const keys = [
+    [modKey+' + Z','Undo'],[modKey+' + Shift + Z','Redo'],[modKey+' + Y','Redo'],
+    ['Esc','Close the open popup'],['Scroll / two-finger drag','Pan the story map'],[modKey+' + scroll / pinch','Zoom the story map'],
+    ['Drag on empty board','Select several nodes'],['Double-click a node','Centre it on screen'],['Double-click a description','Edit it in place']
+  ];
+  dialog('Keyboard shortcuts','<div class="shortcut-list">'+keys.map(([key,label])=>'<span class="kbd">'+escape(key)+'</span><span>'+escape(label)+'</span>').join('')+'</div><p class="muted"><small>While you are typing in a field, '+escape(modKey)+' + Z undoes your typing instead.</small></p>',()=>{},'Done');
+}
+function render() {
+  const next = currentPage();
+  if (next !== page) {
+    popupMode = 'details';
+    selected = null;
+    canvasTool = 'pan';
+  }
+  page = next;
+  graph = null;
+  $('.shell').classList.toggle('canvas-mode',page === 'map');
+  $('.shell').classList.toggle('projects-mode',page === 'projects');
+  $('.shell').classList.toggle('nav-hidden',navHidden);
+  const [key,title,description] = pages.find(entry => entry[0] === page);
+  const p = project();
+  $('#projectName').textContent = page === 'projects' ? '' : p.name;
+  $('#edition').textContent = phone ? 'Desktop view' : 'Phone view';
+  $('#edition').href = phone ? 'writer-desktop.html' : 'writer-phone.html';
+  $('#edition').onclick = () => { try { localStorage.setItem('unstuck-edition',phone ? 'desktop' : 'phone'); } catch {} };
+  updateAIButton();
+  updateHistoryButtons();
+  $('#navigation').innerHTML = pages.map(([route,label],i) => '<button data-action="go:'+route+'"'+(route === key ? ' aria-current="page"' : '')+'><span class="nav-icon" aria-hidden="true">'+symbols[i]+'</span>'+label+'</button>').join('');
+  $('#mobileNavigation').innerHTML = pages.map(([route,label]) => '<option value="'+route+'"'+(route===page?' selected':'')+'>'+label+'</option>').join('');
+  let content;
+  if (page === 'map') {
+    const issues = openIssues(p), knot = issues.length>0;
+    const primary = button('+ Beat','add:Events',true)+button('+ Idea','note');
+    const tools = knot && !phone ? button(canvasTool === 'rotate' ? 'Select' : 'Rotate knot','tool') : '';
+    const status = canvasTool === 'rotate' ? 'Drag on the board to rotate the knot' : 'Two-finger pan · Pinch to zoom · Drag to select';
+    content = '<div class="surface" id="surface" data-tool="'+canvasTool+'" aria-label="'+title+' canvas"><canvas></canvas><div class="layer"></div><div class="marquee" hidden></div></div>'+
+      '<header class="canvas-info">'+button(navHidden ? 'Show menu' : 'Hide menu','toggle-nav')+'<h1>'+title+'</h1></header>'+
+      '<section class="canvas-details node-popup" id="canvasDetails" hidden aria-label="Node details">'+
+      button('Close','close-popup')+'<section class="panel popup-body" id="inspector"></section>'+resizeGrip+'</section>'+
+      '<div class="canvas-hint" id="canvasHint" aria-live="polite" data-default="'+status+'">'+status+'</div>'+
+      '<div class="canvas-tools" role="toolbar" aria-label="'+title+' tools">'+primary+tools+button('−','out')+'<span class="status" id="zoom"></span>'+button('+','in')+button('Reset','reset')+'</div>';
+    content += '<div class="analysis-badge">'+(knot ? button(issues.length+' plot hole'+(issues.length===1 ? '' : 's'),'jump-issue',true) :
+      '<span class="status">'+(p.lastScan || p.sampleKey==='incense-land' ? 'No open plot holes' : 'Not scanned yet')+'</span>')+
+      button(aiBusy==='scan' ? 'Scanning…' : '✦ Scan with AI','ai-scan')+
+      (!knot && allIssues(p).length ? button('Replay knots','replay-knot') : '')+'</div>';
+    if (!p.items.length) {
+      content += '<div class="panel canvas-empty"><h2>Start your timeline</h2><p>Add a story beat or collect rough ideas first.</p><div class="actions">'+button('+ Beat','add:Events',true)+button('+ Idea','note')+'</div></div>';
+    }
+  } else if (page === 'projects') {
+    const sample = state.projects.find(entry=>entry.sampleKey==='incense-land');
+    content = '<section class="hero"><div class="hero-copy">'+
+      '<p class="hero-kicker">Est. 2026 · The Story Engine Works</p><h1 class="hero-title">UnStuck</h1>'+
+      '<div class="ornament" aria-hidden="true"><span></span><b>✦</b><span></span></div>'+
+      '<p class="hero-lede">A workshop for writers whose plots have knotted. Map the timeline, build your cast and your world, and let the engine find the threads that don’t line up.</p>'+
+      '<div class="hero-actions">'+(sample ? button('Open the sample story','open:'+sample.id,true) : '')+button('+ Start a new story','new-project')+'</div></div>'+
+      '<div class="hero-art" aria-hidden="true">'+heroMachine()+'</div></section>'+
+      '<section class="plates" aria-label="What UnStuck does">'+featurePlates.map(([name,text,icon])=>'<article class="plate"><span class="medallion">'+icon+'</span><h2>'+name+'</h2><p>'+text+'</p></article>').join('')+'</section>'+
+      '<section class="library"><div class="library-head"><p class="mono">The library</p><h2>Your stories</h2><div class="ornament small" aria-hidden="true"><span></span><b>⚙&#xFE0E;</b><span></span></div></div>'+
+      '<div class="ledger-grid">'+state.projects.map(ledgerCard).join('')+
+      '<button type="button" class="ledger-new" data-action="new-project"><span class="ledger-new-mark" aria-hidden="true">+</span><strong>Start a new story</strong><small>Begin with a title. Add beats, characters and places as you go.</small></button></div></section>';
+  } else if (page === 'worldbuilding') {
+    content = worldbuildingContent(p,title,description);
+  } else if (page === 'organize') {
+    const groups = [...categories,'Unsorted'].map(category => {
+      const items = p.items.filter(item=>item.category===category);
+      return '<section class="group"><header class="group-head"><h2>'+category+' <small>'+items.length+'</small></h2>'+button('+','add:'+category)+'</header>'+
+        (items.map(item=>'<article class="card"><h3>'+escape(item.title)+'</h3><p class="muted">'+escape(item.body)+'</p><div class="actions">'+button('Open','popup:'+item.id)+'</div>'+
+          (selected===item.id ? '<div class="panel organize-popup">'+button('Close','close-popup')+'<div class="panel popup-body">'+nodeDetails(item)+'</div>'+resizeGrip+'</div>' : '')+'</article>').join('') || '<small>No notes yet</small>')+'</section>';
+    }).join('');
+    content = heading(title,description,button('Suggest categories','categorize')+button('+ Note','note',true))+'<div class="organize-grid">'+groups+'</div>';
+  } else {
+    content = heading(title,description,button('Review map','go:map')+button('Save version','final',true))+'<div class="cards">'+
+      card('Story outline', categories.map(category=>category+' · '+p.items.filter(item=>item.category===category).length).join('\n'))+
+      card('Worldbuilding',(()=>{
+        const people = p.items.filter(item=>item.category==='Characters');
+        const sheets = people.reduce((sum,item)=>sum+completeness(item,characterFields)[0],0);
+        const sheetTotal = people.length*(characterFields.length+1);
+        const [world,worldTotal] = worldTotals(p);
+        return 'Character sheets '+(sheetTotal ? Math.round(sheets/sheetTotal*100) : 0)+'% complete\nWorld notes '+world+'/'+worldTotal+' fields written';
+      })(),button('Open worldbuilding','go:worldbuilding'))+
+      card('Story relationships',p.links.length+' custom connections\n'+(openIssues(p).length ? openIssues(p).length+' plot hole(s) to review.' : allIssues(p).length ? 'All plot holes resolved.' : p.lastScan ? 'AI scan found no plot holes.' : 'Not scanned for plot holes yet.'))+
+      card('Saved version',p.final ? p.final.date+'\n'+p.final.items.length+' notes captured' : 'No saved version yet.',p.final ? button('Download snapshot','download') : '')+'</div>';
+  }
+  $('#screen').innerHTML = content;
+  if (page === 'map') {
+    startGraph();
+    if (pendingFocus) graph.focusNode(pendingFocus,true);
+    pendingFocus = null;
+  } else applyPopupSize();
+}
+function beatOrder(item,p) {
+  return item.order ?? p.items.indexOf(item)*2;
+}
+function startGraph() {
+  const surface = $('#surface');
+  const layer = surface.querySelector('.layer');
+  const canvas = surface.querySelector('canvas');
+  const ctx = canvas.getContext('2d');
+  const view = timeline, p = project();
+  const issues = openIssues(p), knot = issues.length>0;
+  const beats = p.items.filter(item=>['Plot','Events'].includes(item.category) && !item.alternate)
+    .sort((a,b)=>beatOrder(a,p)-beatOrder(b,p));
+  const beatNodes = (beats.length ? beats : [{id:'opening',title:'Opening'}]).map((item,i)=>({
+    id:item.id,title:item.title,label:(item.category==='Events' ? '⚑ Major event' : 'Plot beat')+' · '+(i+1),
+    kind:'beat',x:i*280-280,y:0
+  }));
+  const gaps = issues.map(issue=>{
+    const index = beatNodes.findIndex(beat=>beat.id===issue.to);
+    const from = beatNodes[index-1];
+    const to = beatNodes[index];
+    return from && to ? {issue,from,to} : null;
+  }).filter(Boolean);
+  const gapPoint = gap => ({x:(gap.from.x+gap.to.x)/2,y:(gap.from.y+gap.to.y)/2});
+  const flags = p.items.filter(item=>item.category !== 'Unsorted' && (!beats.includes(item)));
+  const flagCounts = {};
+  const ideas = p.items.filter(item=>item.category==='Unsorted');
+  const lastBeatX = beatNodes.at(-1).x;
+  const nodes = [
+    ...beatNodes,
+    ...ideas.map((item,index)=>({
+      id:item.id,title:item.title,label:'Idea',kind:'note',
+      x:compact() ? lastBeatX+185+Math.floor(index/2)*120 : -245+(index%3)*200,
+      y:compact() ? (index%2 ? 105 : -105) : 218+Math.floor(index/3)*110
+    })),
+    ...flags.map(item=>{
+      const parentId = item.parent;
+      const parent = beatNodes.find(beat=>beat.id===parentId) || beatNodes[0];
+      const index = flagCounts[parent.id] || 0;
+      flagCounts[parent.id] = index+1;
+      const labels = {Characters:'Character',Locations:'Location',Conflicts:'⚑ Conflict'};
+      const label = item.alternate ? 'Alternate branch' : item.category==='Characters' && item.details?.role ? 'Character · '+item.details.role :
+        item.category==='Locations' && item.details?.placeType ? item.details.placeType : labels[item.category] || item.category;
+      return {id:item.id,title:item.title,label,
+        kind:item.alternate ? 'alternate' : 'flag',parent:parent.id,x:parent.x+(index<2 ? 0 : (index%4<2 ? -105 : 105)),y:(index%2 ? 1 : -1)*(112+Math.floor(index/2)*80)};
+    }),
+    ...gaps.map(gap=>{
+      const center = gapPoint(gap);
+      return {id:gap.issue.id,title:gap.issue.title,label:'◎ Plot hole',kind:'issue',x:center.x,y:center.y+77};
+    })
+  ];
+  nodes.forEach(node=>{
+    const offset = p.nodeOffsets?.[node.id];
+    node.x += offset?.x ?? 0;
+    node.y += offset?.y ?? 0;
+  });
+  const sizePoint = (x,y) => compact() ? [y*.86,x*.77] : [x,y];
+
+  const selection = new Set();
+  const marquee = surface.querySelector('.marquee');
+  let drag, pinch, nativePinch;
+  const touches = new Map();
+  const elements = nodes.map(node => {
+    const element = document.createElement('button');
+    element.className = 'node '+(node.kind || '');
+    element.dataset.node = node.id;
+    element.innerHTML = '<span class="mono">'+escape(node.label)+'</span><strong>'+escape(node.title)+'</strong>';
+    layer.append(element);
+    return element;
+  });
+  function draw() {
+    if (!surface.isConnected) return;
+    const w = surface.clientWidth, h = surface.clientHeight, dpi = window.devicePixelRatio || 1;
+    canvas.width = w*dpi;
+    canvas.height = h*dpi;
+    ctx.scale(dpi,dpi);
+    const layout = canvasLayout(surface);
+    const size = view.z*layout.factor;
+    const cx = layout.x+view.x*size, cy = layout.y+view.y*size;
+    const spacing = Math.max(8,20*size);
+    surface.style.backgroundSize = spacing+'px '+spacing+'px';
+    surface.style.backgroundPosition = cx+'px '+cy+'px';
+    function point(x,y) {
+      const [u,v] = sizePoint(x,y);
+      return [cx+u*size,cy+v*size];
+    }
+    function knotPoint(knotCenter,x,y,z) {
+      const rx = x*Math.cos(view.ay)+z*Math.sin(view.ay);
+      const rz = -x*Math.sin(view.ay)+z*Math.cos(view.ay);
+      const ry = y*Math.cos(view.ax)-rz*Math.sin(view.ax);
+      const depth = y*Math.sin(view.ax)+rz*Math.cos(view.ax);
+      const perspective = 480/(480-depth);
+      return [knotCenter[0]+rx*size*perspective,knotCenter[1]+ry*size*perspective,depth];
+    }
+    function line(a,b,color,width = 1.25,dashed = false) {
+      ctx.beginPath();
+      ctx.setLineDash(dashed ? [4,5] : []);
+      ctx.moveTo(a[0],a[1]);
+      ctx.lineTo(b[0],b[1]);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.stroke();
+    }
+    const coords = nodes.map(node=>point(node.x,node.y));
+    const lookup = new Map(nodes.map((node,i)=>[node.id,coords[i]]));
+    beatNodes.slice(1).forEach((node,i)=>{
+      const start = lookup.get(beatNodes[i].id), end = lookup.get(node.id);
+      line(start,end,'#8a6431',2.4);
+      const mid = [(start[0]+end[0])/2,(start[1]+end[1])/2];
+      if (!gaps.some(gap=>gap.from===beatNodes[i] && gap.to===node)) {
+        if (compact()) {
+          line([mid[0]-5,mid[1]-6],mid,'#8a6431',2);
+          line([mid[0]+5,mid[1]-6],mid,'#8a6431',2);
+        } else {
+          line([mid[0]-6,mid[1]-5],mid,'#8a6431',2);
+          line([mid[0]-6,mid[1]+5],mid,'#8a6431',2);
+        }
+      }
+    });
+    nodes.forEach(node=>{
+      if (node.parent) line(lookup.get(node.parent),lookup.get(node.id),node.kind==='issue' ? '#a3503a' : '#b39b72',1.4,true);
+    });
+    p.links.forEach(([a,b])=>{
+      if (lookup.has(a) && lookup.has(b)) line(lookup.get(a),lookup.get(b),'#4f8077',1.3,true);
+    });
+    gaps.forEach(gap=>{
+      const center = gapPoint(gap);
+      const knotCenter = point(center.x,center.y+(compact() ? -54 : 5));
+      line(knotCenter,coords[nodes.findIndex(node=>node.id===gap.issue.id)],'#a3503a',1.5,true);
+      const paths = [];
+      for(let i=0;i<=180;i++) {
+        const t = i*Math.PI/90;
+        const r = 36+15*Math.cos(3*t);
+        paths.push(knotPoint(knotCenter,r*Math.cos(2*t),r*Math.sin(2*t),29*Math.sin(3*t)));
+      }
+      paths.slice(1).map((point,i) => [paths[i],point,(point[2]+paths[i][2])/2]).sort((a,b)=>a[2]-b[2])
+        .forEach(([a,b,depth]) => {
+          line(a,b,'#f2e8d3',6);
+          line(a,b,depth > 0 ? '#8e3b26' : '#c98a6a',3);
+        });
+    });
+    elements.forEach((el,i) => {
+      el.style.left = coords[i][0]+'px';
+      el.style.top = coords[i][1]+'px';
+      const highlighted = selected===nodes[i].id || selection.has(nodes[i].id);
+      el.style.zIndex = highlighted ? '2' : '1';
+      el.classList.toggle('selected',highlighted);
+    });
+    const popup = $('#canvasDetails');
+    const index = nodes.findIndex(node=>node.id===selected);
+    if (!popup.hidden && index>=0) {
+      const [x,y] = coords[index], anchor = elements[index];
+      const pw = popup.offsetWidth, ph = popup.offsetHeight;
+      const margin = 8, minLeft = Math.min(layout.left+margin,Math.max(margin,w-pw-margin));
+      const beside = x+anchor.offsetWidth/2+12;
+      const otherSide = x-anchor.offsetWidth/2-12-pw;
+      const fitsBeside = beside+pw<=w-margin || otherSide>=minLeft;
+      let left = beside+pw<=w-margin ? beside : otherSide;
+      let top = y-ph/2;
+      if (!fitsBeside) {
+        left = x-pw/2;
+        const below = y+anchor.offsetHeight/2+12;
+        top = below+ph<h-60 ? below : y-anchor.offsetHeight/2-12-ph;
+      }
+      if (popupResize?.popup === popup) {
+        left = popupResize.left;
+        top = popupResize.top;
+      }
+      popup.style.left = Math.max(minLeft,Math.min(w-pw-margin,left))+'px';
+      popup.style.top = Math.max(compact() ? 113 : 72,Math.min(h-ph-61,top))+'px';
+    }
+    $('#zoom').textContent = Math.round(view.z*100)+'%';
+  }
+  function localPoint(x,y) {
+    const bounds = surface.getBoundingClientRect();
+    return {x:x-bounds.left,y:y-bounds.top};
+  }
+  function pan(dx,dy) {
+    const scale = view.z*canvasLayout(surface).factor;
+    view.x += dx/scale;
+    view.y += dy/scale;
+  }
+  function zoom(multiplier, anchor) {
+    const next = Math.max(.2,Math.min(4,view.z*multiplier));
+    if (anchor) {
+      const layout = canvasLayout(surface);
+      const delta = (1/next-1/view.z)/layout.factor;
+      view.x += (anchor.x-layout.x)*delta;
+      view.y += (anchor.y-layout.y)*delta;
+    }
+    view.z = next;
+    draw();
+  }
+  function moveMarquee(start,end) {
+    const left = Math.min(start.x,end.x), top = Math.min(start.y,end.y);
+    const right = Math.max(start.x,end.x), bottom = Math.max(start.y,end.y);
+    Object.assign(marquee.style,{left:left+'px',top:top+'px',width:(right-left)+'px',height:(bottom-top)+'px'});
+    marquee.hidden = false;
+    selection.clear();
+    elements.forEach((el,i)=>{
+      const cx = parseFloat(el.style.left), cy = parseFloat(el.style.top);
+      const hw = el.offsetWidth/2, hh = el.offsetHeight/2;
+      if (cx+hw>=left && cx-hw<=right && cy+hh>=top && cy-hh<=bottom) selection.add(nodes[i].id);
+    });
+    const hint = $('#canvasHint');
+    hint.textContent = selection.size ? selection.size+' selected' : hint.dataset.default;
+    draw();
+  }
+  function touchSpan() {
+    const [a,b] = touches.values();
+    return {x:(a.x+b.x)/2,y:(a.y+b.y)/2,distance:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y))};
+  }
+  surface.addEventListener('pointerdown', event => {
+    if (event.button !== 0 && event.button !== 1) return;
+    const point = localPoint(event.clientX,event.clientY);
+    if (event.pointerType==='touch') {
+      touches.set(event.pointerId,point);
+      surface.setPointerCapture(event.pointerId);
+      if (touches.size>=2) {
+        drag = null;
+        pinch = touchSpan();
+        return;
+      }
+    }
+    if (drag) return;
+    const target = event.target.closest('[data-node]');
+    const node = nodes.find(entry=>entry.id===target?.dataset.node);
+    const mode = event.button===1 ? 'pan' : knot && !compact() && canvasTool==='rotate' && !node ? 'rotate' :
+      node ? 'move' : event.pointerType==='touch' ? 'pan' : 'select';
+    drag = {node,mode,start:point,last:point,moved:false,pointer:event.pointerId};
+    if (event.pointerType!=='touch') (target || surface).setPointerCapture(event.pointerId);
+    if (event.button===1) event.preventDefault();
+  });
+  surface.addEventListener('pointermove', event => {
+    const point = localPoint(event.clientX,event.clientY);
+    if (touches.has(event.pointerId)) {
+      touches.set(event.pointerId,point);
+      if (pinch && touches.size>=2) {
+        const next = touchSpan();
+        pan(next.x-pinch.x,next.y-pinch.y);
+        zoom(next.distance/pinch.distance,next);
+        pinch = next;
+        return;
+      }
+    }
+    if (drag?.pointer !== event.pointerId) return;
+    if (!drag.moved && Math.hypot(point.x-drag.start.x,point.y-drag.start.y)<5) return;
+    const previous = drag.moved ? drag.last : drag.start;
+    const dx = point.x-previous.x, dy = point.y-previous.y;
+    if (!drag.moved && drag.mode==='select') {
+      selected = null;
+      inspector();
+    }
+    drag.moved = true;
+    drag.last = point;
+    if (drag.mode==='select') {
+      moveMarquee(drag.start,point);
+    } else if (drag.mode==='rotate') {
+      view.ay += dx*.012;
+      view.ax += dy*.012;
+      draw();
+    } else if (drag.mode==='move') {
+      const scale = view.z*canvasLayout(surface).factor;
+      const moving = selection.has(drag.node.id) ? nodes.filter(node=>selection.has(node.id)) : [drag.node];
+      const mx = compact() ? dy/(scale*.77) : dx/scale;
+      const my = compact() ? dx/(scale*.86) : dy/scale;
+      moving.forEach(node=>{
+        node.x += mx;
+        node.y += my;
+        p.nodeOffsets ??= {};
+        const offset = p.nodeOffsets[node.id] ?? {x:0,y:0};
+        p.nodeOffsets[node.id] = {x:offset.x+mx,y:offset.y+my};
+      });
+      draw();
+    } else if (drag.mode==='pan') {
+      pan(dx,dy);
+      draw();
+    }
+  });
+  function finishPointer(event) {
+    if (touches.delete(event.pointerId)) pinch = touches.size>=2 ? touchSpan() : null;
+    if (drag?.pointer !== event.pointerId) return;
+    marquee.hidden = true;
+    const completed = event.type==='pointerup';
+    if (drag.mode==='move' && drag.moved) save();
+    if (completed && !drag.moved && event.button===0) selectNode(drag.node?.id ?? null);
+    drag = null;
+  }
+  surface.addEventListener('pointerup',finishPointer);
+  surface.addEventListener('pointercancel',finishPointer);
+  surface.addEventListener('lostpointercapture',finishPointer);
+  surface.addEventListener('click',event => {
+    if (event.detail !== 0) return;
+    const node = event.target.closest('[data-node]');
+    if (node) selectNode(node.dataset.node);
+  });
+  surface.addEventListener('dblclick',event => {
+    const node = event.target.closest('[data-node]');
+    if (node) focusNode(node.dataset.node);
+  });
+  surface.addEventListener('wheel',event => {
+    event.preventDefault();
+    const unit = event.deltaMode===1 ? 16 : event.deltaMode===2 ? surface.clientHeight : 1;
+    if (event.ctrlKey || event.metaKey) {
+      if (!nativePinch) zoom(Math.exp(-event.deltaY*unit*.009),localPoint(event.clientX,event.clientY));
+    } else {
+      pan(-event.deltaX*unit,-event.deltaY*unit);
+      draw();
+    }
+  },{passive:false});
+  surface.addEventListener('gesturestart',event=>{
+    event.preventDefault();
+    nativePinch = 1;
+  },{passive:false});
+  surface.addEventListener('gesturechange',event=>{
+    if (!nativePinch) return;
+    event.preventDefault();
+    zoom(event.scale/nativePinch,localPoint(event.clientX,event.clientY));
+    nativePinch = event.scale;
+  },{passive:false});
+  surface.addEventListener('gestureend',event=>{
+    event.preventDefault();
+    nativePinch = null;
+  },{passive:false});
+  function selectNode(nodeId) {
+    selection.clear();
+    const hint = $('#canvasHint');
+    hint.textContent = hint.dataset.default;
+    selected = nodeId;
+    popupMode = 'details';
+    inspector();
+    draw();
+  }
+  function focusNode(nodeId, onlyIfOutside = false) {
+    const node = nodes.find(entry=>entry.id===nodeId);
+    if (!node) return;
+    const [x,y] = sizePoint(node.x,node.y);
+    const layout = canvasLayout(surface), size = view.z*layout.factor;
+    const px = layout.x+(view.x+x)*size, py = layout.y+(view.y+y)*size;
+    if (!onlyIfOutside || px<layout.left+60 || px>surface.clientWidth-60 || py<125 || py>surface.clientHeight-75) {
+      Object.assign(view,{x:-x,y:-y,z:1});
+    }
+    selectNode(nodeId);
+  }
+  graph = {draw,zoom,focusNode,clearSelection:()=>selectNode(null),reset() {
+    Object.assign(view,{x:0,y:0,z:1,ax:.25,ay:-.35});
+    draw();
+  }};
+  inspector();
+  draw();
+}
+function nodeOptions(item) {
+  const issue = issueFor(selected);
+  const fromAI = project().aiSuggestions?.[selected];
+  if (fromAI?.length) return fromAI;
+  if (issue) return issue.options;
+  return [
+    ['Show the cause','Add a moment before “'+item.title+'” that shows what causes it.'],
+    ['Show the consequence','Add a follow-up to “'+item.title+'” that changes what a character can do next.']
+  ];
+}
+function nodeDetails(item) {
+  const isIssue = issueFor(selected);
+  const title = isIssue ? isIssue.question : item.title;
+  const body = isIssue ? project().issueDescriptions?.[isIssue.id] ?? isIssue.body : item.body;
+  const header = '<span class="mono'+(isIssue ? ' issue-text' : '')+'">'+escape(isIssue ? 'Open plot hole' : item.category==='Unsorted' ? 'Idea' : item.category)+'</span><h2>'+escape(title)+'</h2>';
+  const description = '<p class="muted node-description" tabindex="0" data-description title="Double-click to edit" aria-description="Double-click or press Enter to edit">'+escape(body || 'Add a description')+'</p>';
+  const tabs = '<div class="actions">'+[['suggestions','Suggestions'],['experiment','Experiment']].map(([key,label])=>button(label,'mode:'+(key===popupMode ? 'details' : key),key===popupMode)).join('')+'</div>';
+  let content;
+  if (popupMode==='suggestions' || popupMode==='experiment') {
+    const options = nodeOptions(item);
+    const experimenting = popupMode==='experiment';
+    const fromAI = project().aiSuggestions?.[selected]?.length || isIssue?.ai;
+    content = '<p class="muted">'+(experimenting ? 'Try an alternate direction as a branch.' : fromAI ? 'AI suggestions based on your whole story' : isIssue ? 'Sample suggestions' : 'Starter suggestions')+'</p>'+
+      options.map(([label,description,reason],index)=>card(label,description+(reason ? '\n\nWhy: '+reason : ''),button(experimenting ? 'Try branch' : 'Add node',(experimenting ? 'try-option:' : 'add-option:')+index,true))).join('')+
+      button(aiBusy==='suggest' ? 'Thinking…' : isIssue ? '✦ Ask AI for other fixes' : '✦ Ask AI for ideas','ai-suggest')+
+      (experimenting ? button('Write a branch','branch') : '');
+  } else {
+    content = '';
+    if (!isIssue) content += '<div class="actions">'+button(detailFields[item.category] ? 'Open full sheet' : 'Edit note','edit:'+item.id)+button('Connect notes','connect')+button('Remove','remove:'+item.id)+'</div>'+
+      (item.reference?.startsWith('data:') ? '<a download="'+escape(item.file)+'" href="'+escape(item.reference)+'">'+escape(item.file)+'</a>' : escape(item.file))+
+      (item.alternate ? button('Use this branch','use-branch:'+item.id,true) : '');
+  }
+  const fields = !isIssue && detailFields[item?.category];
+  const facts = fields ? fields.filter(([key])=>item.details?.[key]).slice(0,4) : [];
+  const factList = facts.length ? '<dl class="facts">'+facts.map(([key,label])=>'<dt>'+escape(label)+'</dt><dd>'+escape(item.details[key])+'</dd>').join('')+'</dl>' : '';
+  const evidence = isIssue?.evidence?.length ? '<details class="evidence"><summary>Evidence from your notes</summary><ul>'+isIssue.evidence.map(entry=>'<li>“'+escape(entry.quote)+'”'+(entry.title ? ' <small class="muted">— '+escape(entry.title)+'</small>' : '')+'</li>').join('')+'</ul></details>' : '';
+  return header+description+evidence+factList+tabs+content;
+}
+function inspector() {
+  const popup = $('#canvasDetails'), panel = $('#inspector');
+  if (!popup) return;
+  const p = project(), item = p.items.find(note=>note.id===selected);
+  const hasIssue = openIssues(p).some(issue=>issue.id===selected);
+  popup.hidden = !item && !hasIssue && selected!=='opening';
+  panel.innerHTML = popup.hidden ? '' : selected==='opening' ? '<h2>Opening</h2>'+button('+ Beat','add:Events',true) : nodeDetails(item);
+  applyPopupSize();
+}
+function insertOption(title,body,alternate,placement = 1) {
+  const p = project(), isIssue = issueFor(selected);
+  const parent = isIssue ? isIssue.from : selected;
+  const base = p.items.find(item=>item.id===parent);
+  const entry = {id:id(),title,body,category:isIssue ? 'Events' : 'Plot',parent,alternate,fixesIssue:isIssue?.id,
+    x:(base?.x ?? 0)+130,y:(base?.y ?? 0)+55};
+  if (isIssue) entry.order = isIssue.order;
+  else if (base) entry.order = beatOrder(base,p)+placement*.5;
+  p.items.push(entry);
+  if (!alternate && isIssue) {
+    updateIssueFix(p,entry,body);
+    canvasTool = 'pan';
+  }
+  if (base) p.links.push([base.id,entry.id]);
+  selected = entry.id;
+  popupMode = 'details';
+  save();
+  render();
+  graph?.focusNode(entry.id,true);
+  notify(alternate ? 'Alternate branch added.' : isIssue ? 'Beat added. Plot hole resolved.' : 'Node added.');
+}
+document.addEventListener('click',event => {
+  const target = event.target.closest('[data-action]');
+  if (!target) return;
+  const [action, arg] = target.dataset.action.split(':');
+  const p = project();
+  const item = p?.items.find(note=>note.id===arg);
+  switch (action) {
+    case 'go': go(arg); return;
+    case 'undo': restore('undo'); return;
+    case 'redo': restore('redo'); return;
+    case 'shortcuts': showShortcuts(); return;
+    case 'map-focus': pendingFocus = arg; go('map'); return;
+    case 'wb-tab': wbTab = arg; render(); return;
+    case 'ai-settings': aiSettings(); return;
+    case 'ai-test': testAI(); return;
+    case 'ai-scan': scanPlotHoles(); return;
+    case 'ai-suggest': suggestWithAI(); return;
+    case 'ai-characters': findCharacters(); return;
+    case 'cancel': $('#dialog').close(); return;
+    case 'in': graph.zoom(1.25); return;
+    case 'out': graph.zoom(.8); return;
+    case 'reset': graph.reset(); return;
+    case 'focus': graph.focusNode(arg); return;
+    case 'note': editItem(); return;
+    case 'add': editItem(null,arg); return;
+    case 'edit': if (item) editItem(item); return;
+    case 'remove':
+      dialog('Remove this note?','<p>'+escape(item.title)+'</p>',() => {
+        p.items = p.items.filter(note=>note.id!==arg);
+        p.links = p.links.filter(link=>!link.includes(arg));
+        updateIssueFix(p,item,p.items.find(note=>!note.alternate && issueFor(note.fixesIssue)===issueFor(item.fixesIssue))?.body || '');
+        if (selected===arg) selected=null;
+      },'Remove');
+      return;
+    case 'open': openProject(state.projects.find(entry=>entry.id===arg)); return;
+    case 'new-project':
+    case 'rename': {
+      const entry = state.projects.find(project=>project.id===arg);
+      dialog(entry ? 'Rename project' : 'New story project','<label>Project name<input required maxlength="80" name="name" value="'+escape(entry?.name)+'"></label>',data=>{
+        const name = data.get('name').trim();
+        if (!name) return false;
+        if (entry) entry.name = name;
+        else {
+          const created = makeProject(name);
+          state.projects.push(created);
+          openProject(created);
+        }
+      },entry ? 'Save' : 'Create');
+      return;
+    }
+    case 'toggle-nav': navHidden = !navHidden; render(); return;
+    case 'tool': if (compact()) return; canvasTool = canvasTool === 'pan' ? 'rotate' : 'pan'; render(); return;
+    case 'jump-issue': {
+      const issues = openIssues(p);
+      const index = issues.findIndex(issue=>issue.id===selected);
+      graph.focusNode(issues[(index+1)%issues.length].id,true);
+      return;
+    }
+    case 'replay-knot':
+      allIssues(p).forEach(issue=>{
+        const stored = p[issue.field];
+        const fixes = p.items.filter(note=>issueFor(note.fixesIssue)===issue);
+        if (stored && !fixes.some(note=>note.body===stored)) {
+          p.items.push({id:id(),title:issue.beat,body:stored,category:'Events',order:issue.order,
+            parent:issue.from,fixesIssue:issue.id,alternate:true,x:5,y:-10});
+        }
+        fixes.forEach(note=>{note.alternate = true;});
+        p[issue.field] = '';
+      });
+      Object.assign(timeline,{x:0,y:0,z:1,ax:.25,ay:-.35});
+      selected = openIssues(p)[0]?.id;
+      popupMode = 'details';
+      break;
+    case 'popup': selected = arg; popupMode = 'details'; break;
+    case 'cancel-description': render(); return;
+    case 'close-popup': selected = null; popupMode = 'details'; break;
+    case 'mode': popupMode = arg; break;
+    case 'add-option':
+    case 'try-option': {
+      const [title,body] = nodeOptions(p.items.find(note=>note.id===selected))[Number(arg)];
+      insertOption(title,body,action==='try-option',Number(arg)===0 ? -1 : 1);
+      return;
+    }
+    case 'branch':
+      dialog('New alternate branch','<label>Title<input required name="title"></label><label>What changes?<textarea required name="body"></textarea></label>',data=>{
+        const title = data.get('title').trim(), body = data.get('body').trim();
+        if (!title || !body) return false;
+        insertOption(title,body,true);
+      });
+      return;
+    case 'use-branch':
+      item.alternate = false;
+      if (item.fixesIssue) {
+        updateIssueFix(p,item,item.body);
+        canvasTool = 'pan';
+      }
+      break;
+    case 'categorize': {
+      const patterns = [/plot|chapter|ending/i,/character|motive|person/i,/event|scene|happen/i,/location|city|place/i,/conflict|rival|fight/i];
+      let count = 0;
+      p.items.filter(note=>note.category==='Unsorted').forEach(note=>{
+        const match = patterns.findIndex(pattern=>pattern.test(note.title+' '+note.body));
+        if (match>=0) {note.category=categories[match]; count++;}
+      });
+      notify(count ? 'Categorized '+count+' note(s).' : 'No category matches found in unsorted notes.');
+      break;
+    }
+    case 'connect': {
+      if (p.items.length < 2) {notify('Add at least two notes to make a connection.'); return;}
+      const options = p.items.map(note=>'<option value="'+escape(note.id)+'">'+escape(note.title)+'</option>');
+      dialog('Connect story notes','<label>From<select name="from">'+options.join('')+'</select></label><label>To<select name="to">'+options.slice().reverse().join('')+'</select></label>',data=>{
+        const from=data.get('from'),to=data.get('to');
+        if (from===to) {notify('Choose two different notes.');return false;}
+        if (!p.links.some(link=>link[0]===from && link[1]===to)) p.links.push([from,to]);
+      },'Connect');
+      return;
+    }
+    case 'final':
+      p.final = {name:p.name,date:new Date().toLocaleString(),world:{...(p.world || {})},items:p.items.map(({title,category,body,file,details})=>({title,category,body,file,details})),plotHoleFixes:Object.fromEntries(allIssues(p).filter(issue=>p[issue.field]).map(issue=>[issue.id,p[issue.field]])),links:p.links.map(link=>link.map(noteId=>p.items.find(note=>note.id===noteId)?.title))};
+      notify('Version saved.'); break;
+    case 'download': {
+      const url = URL.createObjectURL(new Blob([JSON.stringify(p.final,null,2)],{type:'application/json'}));
+      const link = document.createElement('a');
+      link.href=url; link.download='story-version.json'; link.click();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+      return;
+    }
+  }
+  save();
+  render();
+});
+document.addEventListener('pointerdown',event=>{
+  const grip = event.target.closest('[data-resize-popup]');
+  if (!grip || event.button !== 0 || popupResize) return;
+  const popup = grip.closest('.node-popup, .organize-popup');
+  popupResize = {popup,pointer:event.pointerId,x:event.clientX,y:event.clientY,
+    width:popup.offsetWidth,height:popup.offsetHeight,left:popup.offsetLeft,top:popup.offsetTop};
+  grip.setPointerCapture(event.pointerId);
+  event.preventDefault();
+});
+document.addEventListener('pointermove',event=>{
+  const drag = popupResize;
+  if (drag?.pointer !== event.pointerId) return;
+  resizePopup(drag.popup,drag.width+event.clientX-drag.x,drag.height+event.clientY-drag.y);
+});
+function endPopupResize(event) {
+  if (popupResize?.pointer === event.pointerId) popupResize = null;
+}
+document.addEventListener('pointerup',endPopupResize);
+document.addEventListener('pointercancel',endPopupResize);
+document.addEventListener('lostpointercapture',endPopupResize);
+document.addEventListener('keydown',event=>{
+  const key = event.key.toLowerCase();
+  if ((event.ctrlKey || event.metaKey) && !event.altKey && (key === 'z' || key === 'y')) {
+    // Text fields and open dialogs keep the browser's own typing undo.
+    if (event.target.closest('input, textarea, select, [contenteditable]') || $('#dialog').open) return;
+    event.preventDefault();
+    restore(key === 'y' || event.shiftKey ? 'redo' : 'undo');
+    return;
+  }
+  const description = event.target.closest('[data-description]');
+  if (description && (event.key==='Enter' || event.key===' ')) {
+    event.preventDefault();
+    editDescription(description);
+    return;
+  }
+  if (event.key==='Escape' && event.target.closest('.description-editor')) {
+    render();
+    return;
+  }
+  if (event.key==='Escape' && graph && !$('#dialog').open) graph.clearSelection();
+  const grip = event.target.closest('[data-resize-popup]');
+  const delta = {ArrowLeft:[-16,0],ArrowRight:[16,0],ArrowUp:[0,-16],ArrowDown:[0,16]}[event.key];
+  if (!grip || !delta) return;
+  event.preventDefault();
+  const popup = grip.closest('.node-popup, .organize-popup');
+  resizePopup(popup,popup.offsetWidth+delta[0],popup.offsetHeight+delta[1]);
+});
+function fitDescriptionEditor(textarea = $('#descriptionEditor textarea')) {
+  if (!textarea) return;
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + textarea.offsetHeight - textarea.clientHeight + 'px';
+}
+function editDescription(element) {
+  const p = project(), issue = issueFor(selected);
+  const item = p.items.find(note=>note.id===selected);
+  if (!issue && !item) return;
+  const body = issue ? p.issueDescriptions?.[issue.id] ?? issue.body : item.body;
+  const editor = document.createElement('form');
+  editor.className = 'fields description-editor';
+  editor.id = 'descriptionEditor';
+  editor.innerHTML = '<textarea name="body" rows="1" aria-label="Description">'+escape(body)+'</textarea>'+
+    '<div class="actions">'+button('Cancel','cancel-description')+'<button class="primary">Save</button></div>';
+  element.replaceWith(editor);
+  const textarea = editor.querySelector('textarea');
+  fitDescriptionEditor(textarea);
+  textarea.addEventListener('input',()=>{
+    fitDescriptionEditor(textarea);
+    graph?.draw();
+  });
+  textarea.focus({preventScroll:true});
+  textarea.setSelectionRange(textarea.value.length,textarea.value.length);
+  graph?.draw();
+}
+document.addEventListener('dblclick',event=>{
+  const description = event.target.closest('[data-description]');
+  if (description) editDescription(description);
+});
+let lastDescriptionTap;
+document.addEventListener('pointerup',event=>{
+  if (event.pointerType !== 'touch') return;
+  const description = event.target.closest('[data-description]');
+  if (description && lastDescriptionTap?.element===description && event.timeStamp-lastDescriptionTap.time<350 &&
+      Math.hypot(event.clientX-lastDescriptionTap.x,event.clientY-lastDescriptionTap.y)<25) {
+    lastDescriptionTap = null;
+    editDescription(description);
+  } else {
+    lastDescriptionTap = description ? {element:description,time:event.timeStamp,x:event.clientX,y:event.clientY} : null;
+  }
+});
+document.addEventListener('submit',event=>{
+  if (event.target.id !== 'descriptionEditor') return;
+  event.preventDefault();
+  const body = new FormData(event.target).get('body').trim();
+  const p = project(), issue = issueFor(selected);
+  if (issue) {
+    p.issueDescriptions ??= {};
+    p.issueDescriptions[issue.id] = body;
+  } else {
+    const item = p.items.find(note=>note.id===selected);
+    item.body = body;
+    updateIssueFix(p,item,body);
+  }
+  save();
+  render();
+});
+document.addEventListener('change',event=>{
+  const field = event.target.closest('[data-world]');
+  if (!field) return;
+  const p = project();
+  p.world ??= {};
+  p.world[field.dataset.world] = field.value;
+  save();
+  refreshWorldCounts();
+});
+// ===== AI (Google Gemini, through the UnStuck backend) =====
+// When the site is served by server.js (npm start, or Render), AI requests go to /api/ai and the
+// API key stays on the server. Without the server (e.g. VS Code Live Server), a personal key can be
+// entered in AI settings instead; it is kept only in this browser.
+// If the website is hosted somewhere other than the server (e.g. GitHub Pages), put the server's
+// address here, e.g. 'https://unstuck.onrender.com', and add the site to ALLOWED_ORIGINS on the server.
+const AI_SERVER = '';
+const AI_STORE = 'unstuck-ai';
+const AI_DEFAULT_MODEL = 'gemini-3.8-flash';
+let aiConfig = {key:'',model:AI_DEFAULT_MODEL};
+try { Object.assign(aiConfig, JSON.parse(localStorage.getItem(AI_STORE)) || {}); } catch {}
+let aiBusy = null;
+let aiServer = null; // {ok, ai, model} once /api/health answers
+const usingServer = () => Boolean(aiServer?.ai);
+const aiReady = () => usingServer() || Boolean(aiConfig.key);
+function updateAIButton() {
+  const aiButton = $('#aiButton');
+  if (!aiButton) return;
+  aiButton.classList.toggle('ready',aiReady());
+  aiButton.title = usingServer() ? 'AI is on through the UnStuck server ('+aiServer.model+')' : aiConfig.key ? 'AI is on with your own key ('+aiConfig.model+')' : 'Set up the AI';
+}
+async function checkServer() {
+  if (!AI_SERVER && !/^https?:$/.test(location.protocol)) return;
+  try {
+    const response = await fetch(AI_SERVER+'/api/health',{cache:'no-store'});
+    const data = response.ok ? await response.json() : null;
+    aiServer = data?.ok ? data : null;
+  } catch { aiServer = null; }
+  updateAIButton();
+}
+
+function aiSettings(message = '') {
+  const status = usingServer() ? '<p class="ai-status ok">✓ Connected to the UnStuck server (model '+escape(aiServer.model)+'). No key needed here.</p>' :
+    aiServer ? '<p class="ai-status warn">The UnStuck server is running but has no API key. Add GEMINI_API_KEY to its .env file (or to Render’s environment variables) and restart it.</p>' :
+    '<p class="ai-status warn">No UnStuck server found. If you opened the files with Live Server, run <code>npm start</code> and open <code>http://localhost:3000</code> instead, or paste your own key below.</p>';
+  dialog('AI settings',
+    (message ? '<p class="ai-note">'+escape(message)+'</p>' : '')+status+
+    '<p class="muted"><small>UnStuck uses Google’s Gemini API to scan for plot holes, suggest ideas and find characters.</small></p>'+
+    '<details class="own-key"'+(usingServer() ? '' : ' open')+'><summary>Use your own key instead</summary>'+
+    '<p class="muted"><small>Only used when the server isn’t available. Get a free key at <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Google AI Studio</a>. It is stored only in this browser.</small></p>'+
+    '<label>Your Gemini API key<input name="key" type="password" autocomplete="off" spellcheck="false" value="'+escape(aiConfig.key)+'" placeholder="Paste your key"></label>'+
+    '<label>Model <small>Default: '+AI_DEFAULT_MODEL+'</small><input name="model" value="'+escape(aiConfig.model)+'"></label></details>'+
+    '<div class="actions">'+button('Test connection','ai-test')+'</div>'+
+    '<p class="muted"><small>On Google’s free tier, what you send may be used to improve Google’s products, so avoid pasting anything private.</small></p>',
+    data => {
+      aiConfig = {key:String(data.get('key') || '').trim(),model:String(data.get('model') || '').trim() || AI_DEFAULT_MODEL};
+      try { localStorage.setItem(AI_STORE,JSON.stringify(aiConfig)); } catch {}
+      updateAIButton();
+      notify(aiReady() ? 'AI settings saved.' : 'AI is off.');
+    });
+}
+function requireAI() {
+  if (aiReady()) return true;
+  aiSettings('The AI isn’t set up yet. Start the UnStuck server, or add your own free Gemini key.');
+  return false;
+}
+async function callServerAI(system, prompt) {
+  let response;
+  try {
+    response = await fetch(AI_SERVER+'/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system,prompt})});
+  } catch { throw new Error('Could not reach the UnStuck server. Is it running?'); }
+  const data = await response.json().catch(()=>({}));
+  if (!response.ok) throw new Error(data.error || 'The UnStuck server returned an error ('+response.status+').');
+  return parseAIJson(String(data.text || ''));
+}
+async function callAI(system, prompt, config = aiConfig) {
+  if (usingServer() && !config.forceOwnKey) return callServerAI(system, prompt);
+  if (!config.key) throw new Error('The AI isn’t set up. Start the UnStuck server or add your own key in AI settings.');
+  const url = 'https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(config.model || AI_DEFAULT_MODEL)+':generateContent';
+  let response;
+  try {
+    response = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':config.key},
+      body:JSON.stringify({systemInstruction:{parts:[{text:system}]},contents:[{role:'user',parts:[{text:prompt}]}],
+        generationConfig:{responseMimeType:'application/json'}})});
+  } catch { throw new Error('Could not reach the AI service. Check your internet connection.'); }
+  const data = await response.json().catch(()=>({}));
+  if (!response.ok) {
+    if (response.status === 429) throw new Error('The free AI quota is used up for now. Try again in a minute, or tomorrow.');
+    if (response.status === 400 && /api key/i.test(data.error?.message || '')) throw new Error('The API key was not accepted. Check it in AI settings.');
+    throw new Error(data.error?.message || 'The AI service returned an error ('+response.status+').');
+  }
+  const text = (data.candidates?.[0]?.content?.parts || []).filter(part=>!part.thought && part.text).map(part=>part.text).join('');
+  if (!text) throw new Error(data.promptFeedback?.blockReason ? 'The AI declined this request.' : 'The AI returned an empty answer. Try again.');
+  return parseAIJson(text);
+}
+function parseAIJson(text) {
+  try { return JSON.parse(text); } catch {}
+  const match = text.match(/\{[\s\S]*\}/);
+  if (match) { try { return JSON.parse(match[0]); } catch {} }
+  throw new Error('Could not read the AI’s answer. Try again.');
+}
+async function runAI(kind, task) {
+  if (aiBusy) { notify('The AI is still working…'); return; }
+  aiBusy = kind;
+  render();
+  try { await task(); }
+  catch (error) { notify(error.message || 'Something went wrong with the AI.', 6000); }
+  finally { aiBusy = null; render(); }
+}
+async function testAI() {
+  const form = $('#dialog form');
+  const typedKey = String(form?.elements.key?.value || '').trim();
+  const config = {key:typedKey,model:String(form?.elements.model?.value || '').trim() || AI_DEFAULT_MODEL,forceOwnKey:!usingServer()};
+  if (!usingServer() && !typedKey) { notify('No server found. Paste a key first, or start the UnStuck server.'); return; }
+  notify('Testing…');
+  try {
+    const result = await callAI('Reply with JSON only.','Return {"ok": true}.',config);
+    notify(result?.ok ? (usingServer() ? 'Server connection works.' : 'Your key works.') : 'Connected, but the reply was unexpected.');
+  } catch (error) { notify(error.message,6000); }
+}
+
+// --- Story packet: everything the model needs, sent with every request (the model has no memory of its own) ---
+const cleanFields = object => Object.fromEntries(Object.entries(object || {}).filter(([,value])=>String(value ?? '').trim()));
+function timelineOf(p) {
+  return p.items.filter(item=>['Plot','Events'].includes(item.category) && !item.alternate).sort((a,b)=>beatOrder(a,p)-beatOrder(b,p));
+}
+function storyPacket(p) {
+  const beats = timelineOf(p);
+  const titleOf = noteId => p.items.find(item=>item.id===noteId)?.title;
+  const other = p.items.filter(item=>!item.alternate && !beats.includes(item) && !['Characters','Locations','Unsorted'].includes(item.category));
+  return JSON.stringify({
+    storyTitle:p.name,
+    timeline:beats.map((item,index)=>({id:item.id,position:index+1,type:item.category==='Events' ? 'major event' : 'plot beat',title:item.title,text:item.body || ''})),
+    characters:p.items.filter(item=>item.category==='Characters').map(item=>({id:item.id,name:item.title,notes:item.body || '',sheet:cleanFields(item.details),firstSeenAt:titleOf(item.parent)})),
+    places:p.items.filter(item=>item.category==='Locations').map(item=>({id:item.id,name:item.title,notes:item.body || '',details:cleanFields(item.details),linkedBeat:titleOf(item.parent)})),
+    otherNotes:other.map(item=>({id:item.id,category:item.category,title:item.title,text:item.body || '',linkedBeat:titleOf(item.parent)})),
+    roughIdeas:p.items.filter(item=>item.category==='Unsorted').map(item=>({id:item.id,title:item.title,text:item.body || ''})),
+    world:cleanFields(p.world),
+    connections:p.links.map(([a,b])=>[titleOf(a),titleOf(b)]).filter(([a,b])=>a && b),
+    resolvedPlotHoles:allIssues(p).filter(issue=>p[issue.field]).map(issue=>({question:issue.question,writerAnswer:p[issue.field]}))
+  });
+}
+const normalise = text => String(text || '').toLowerCase().replace(/[“”"‘’']/g,'').replace(/\s+/g,' ').trim();
+
+// --- 1. Plot-hole scan: find, then verify ---
+const EDITOR_RULES = 'You are a meticulous continuity editor for fiction. You read a writer’s story notes (JSON) and find genuine contradictions, plot holes and continuity errors. Be rational and conservative: report a problem only when specific notes conflict, or when a beat depends on something the notes never establish and nothing else in the notes explains it. Read every note, including character sheets, places and world rules, before deciding. Quote the notes word for word as evidence. Never invent facts that are not in the notes. Do not report matters of taste, style or pacing. Treat resolvedPlotHoles as settled. Reply with JSON only.';
+async function scanPlotHoles() {
+  if (!requireAI()) return;
+  const p = project();
+  if (timelineOf(p).length < 2) { notify('Add at least two story beats before scanning.'); return; }
+  await runAI('scan', async () => {
+    notify('Reading your story…', 60000);
+    const packet = storyPacket(p);
+    const found = await callAI(EDITOR_RULES,
+      'STORY NOTES:\n'+packet+'\n\nTASK: Find up to 5 plot holes. Return {"plotHoles":[{'+
+      '"title": short label (max 7 words), "question": the one question the writer must answer, "explanation": 2-3 sentences on why it is a problem, '+
+      '"fromId": id of the earlier timeline beat involved, "toId": id of the later timeline beat where the problem shows, '+
+      '"evidence": [{"noteId": id, "quote": exact words copied from that note}] with at least two quotes, '+
+      '"fixes": exactly 2 items [{"label": max 5 words, "description": one sentence describing a new beat or change that resolves it}], '+
+      '"fixBeatTitle": max 6 words}]}. fromId and toId must be ids from "timeline", with fromId earlier than toId. Return {"plotHoles":[]} if there are none.');
+    let candidates = Array.isArray(found?.plotHoles) ? found.plotHoles : [];
+    // Local check: keep only evidence that really appears in the notes.
+    const haystack = normalise(packet);
+    candidates = candidates.map(hole=>({...hole,evidence:(hole.evidence || []).filter(entry=>entry?.quote && haystack.includes(normalise(entry.quote)))}))
+      .filter(hole=>hole.evidence.length >= 1);
+    if (candidates.length) {
+      notify('Double-checking '+candidates.length+' possible problem(s)…', 60000);
+      const verdict = await callAI(EDITOR_RULES,
+        'STORY NOTES:\n'+packet+'\n\nCANDIDATE PROBLEMS:\n'+JSON.stringify(candidates.map((hole,index)=>({index,title:hole.title,question:hole.question,explanation:hole.explanation,evidence:hole.evidence})))+
+        '\n\nTASK: Check each candidate against ALL of the notes. Reject it if the notes already explain it, if the quotes do not really conflict, or if it is only a matter of taste. Return {"verdicts":[{"index": number, "keep": true or false, "reason": one sentence}]}.');
+      const keep = new Set((verdict?.verdicts || []).filter(entry=>entry.keep === true).map(entry=>Number(entry.index)));
+      candidates = candidates.filter((hole,index)=>keep.has(index));
+    }
+    const beats = timelineOf(p), ids = beats.map(item=>item.id);
+    const issues = [];
+    candidates.forEach(hole=>{
+      let from = ids.indexOf(hole.fromId), to = ids.indexOf(hole.toId);
+      if (to < 0) return;
+      if (from > to) [from,to] = [to,from];
+      if (to === 0) to = 1;
+      if (from < 0 || from >= to) from = to-1;
+      if (!beats[to] || !beats[from]) return;
+      const issueId = 'ai-'+id();
+      const previous = beatOrder(beats[to-1],p), next = beatOrder(beats[to],p);
+      const titleOf = noteId => p.items.find(item=>item.id===noteId)?.title;
+      issues.push({id:issueId,ai:true,title:String(hole.title || 'Possible plot hole'),question:String(hole.question || hole.title || 'What happened here?'),
+        body:String(hole.explanation || ''),from:beats[from].id,to:beats[to].id,order:(previous+next)/2,field:'fix_'+issueId,
+        beat:String(hole.fixBeatTitle || hole.title || 'Missing beat'),
+        evidence:hole.evidence.slice(0,4).map(entry=>({quote:String(entry.quote),title:titleOf(entry.noteId) || ''})),
+        options:(hole.fixes || []).slice(0,3).map(fix=>[String(fix.label || 'Fix'),String(fix.description || '')])});
+    });
+    // Keep plot holes the writer already fixed; replace the unresolved ones with the new scan.
+    p.aiIssues = [...(p.aiIssues || []).filter(issue=>p[issue.field]), ...issues];
+    p.lastScan = new Date().toISOString();
+    save();
+    notify(issues.length ? 'Found '+issues.length+' plot hole'+(issues.length===1 ? '' : 's')+'. Select a red node to fix it.' : 'No plot holes found. Your timeline holds together.', 5000);
+    if (issues.length) { pendingFocus = issues[0].id; popupMode = 'details'; }
+    if (page !== 'map') go('map');
+  });
+}
+
+// --- 2. Suggestions for the selected note or plot hole ---
+async function suggestWithAI() {
+  if (!requireAI()) return;
+  const p = project(), issue = issueFor(selected), item = p.items.find(note=>note.id===selected);
+  if (!issue && !item) return;
+  const focus = issue ? {type:'plot hole',question:issue.question,explanation:p.issueDescriptions?.[issue.id] ?? issue.body,between:[p.items.find(note=>note.id===issue.from)?.title,p.items.find(note=>note.id===issue.to)?.title]} :
+    {type:item.category,id:item.id,title:item.title,text:item.body || '',details:cleanFields(item.details)};
+  const target = selected;
+  await runAI('suggest', async () => {
+    const result = await callAI('You are a thoughtful story development editor. You suggest concrete story beats that fit the writer’s existing notes, characters and world. Stay consistent with every established fact, and build on the characters’ wants, needs and flaws. Never contradict the notes. Reply with JSON only.',
+      'STORY NOTES:\n'+storyPacket(p)+'\n\nFOCUS:\n'+JSON.stringify(focus)+'\n\nTASK: '+(issue ? 'Suggest 3 different ways to resolve this plot hole, each as a new beat.' : 'Suggest 3 different story beats that develop the focus note, such as a cause, a consequence or a complication.')+
+      ' Return {"suggestions":[{"label": max 5 words, "description": 1-2 sentences saying who does what, where, and how it connects, "reason": one short sentence naming the existing notes it builds on}]}.');
+    const suggestions = (result?.suggestions || []).filter(entry=>entry?.label && entry?.description).slice(0,4)
+      .map(entry=>[String(entry.label),String(entry.description),String(entry.reason || '')]);
+    if (!suggestions.length) throw new Error('The AI had no suggestions this time. Try again.');
+    p.aiSuggestions ??= {};
+    p.aiSuggestions[target] = suggestions;
+    save();
+    selected = target;
+    if (popupMode === 'details') popupMode = 'suggestions';
+    notify('New suggestions ready.');
+  });
+}
+
+// --- 3. Find characters mentioned in the notes ---
+async function findCharacters() {
+  if (!requireAI()) return;
+  const p = project();
+  if (!p.items.some(item=>item.category!=='Characters')) { notify('Write a few story notes first.'); return; }
+  let found = [];
+  await runAI('characters', async () => {
+    const result = await callAI('You are a careful story analyst. You read a writer’s notes and identify the characters in them. Use only facts stated or clearly implied in the notes; leave a field as an empty string rather than guess. Reply with JSON only.',
+      'STORY NOTES:\n'+storyPacket(p)+'\n\nTASK: List every character (a person, family, group or organisation that acts in the story) mentioned in the notes who is NOT already in "characters". '+
+      'Return {"characters":[{"name": string, "summary": 1-2 sentences, "role": one of '+JSON.stringify(characterRoles)+', "age": string, "occupation": string, "want": string, "need": string, "flaw": string, "relationships": string, "firstBeatId": id of the timeline beat where they first appear, or ""}]}.');
+    const existing = new Set(p.items.filter(item=>item.category==='Characters').map(item=>normalise(item.title)));
+    found = (result?.characters || []).filter(entry=>entry?.name && !existing.has(normalise(entry.name))).slice(0,12);
+    if (!found.length) notify('No new characters found in your notes.', 4000);
+  });
+  if (!found.length) return;
+  const beats = new Set(timelineOf(p).map(item=>item.id));
+  dialog('Characters found in your notes',
+    '<p class="muted"><small>Tick the ones to add. You can edit their sheets afterwards.</small></p><div class="pick-list">'+
+    found.map((entry,index)=>'<label class="pick"><input type="checkbox" name="pick" value="'+index+'" checked><span><strong>'+escape(entry.name)+'</strong>'+
+      (characterRoles.includes(entry.role) ? ' <small class="mono">'+escape(entry.role)+'</small>' : '')+'<br><small class="muted">'+escape(entry.summary || '')+'</small></span></label>').join('')+'</div>',
+    data => {
+      const picks = data.getAll('pick').map(Number);
+      picks.forEach(index=>{
+        const entry = found[index];
+        p.items.push({id:id(),title:String(entry.name).slice(0,80),body:String(entry.summary || ''),category:'Characters',
+          parent:beats.has(entry.firstBeatId) ? entry.firstBeatId : '',
+          details:{role:characterRoles.includes(entry.role) ? entry.role : '',age:String(entry.age || ''),occupation:String(entry.occupation || ''),
+            want:String(entry.want || ''),need:String(entry.need || ''),flaw:String(entry.flaw || ''),relationships:String(entry.relationships || '')}});
+      });
+      wbTab = 'characters';
+      notify(picks.length ? 'Added '+picks.length+' character'+(picks.length===1 ? '' : 's')+'.' : 'No characters added.');
+    },'Add selected',true);
+}
+
+$('#mobileNavigation').addEventListener('change',event=>go(event.target.value));
+window.addEventListener('hashchange',()=>{window.scrollTo(0,0);render();});
+window.addEventListener('resize',()=>{fitDescriptionEditor();graph?.draw();});
+checkServer();
+// Re-place the node popup when its evidence panel opens or closes.
+document.addEventListener('toggle',event=>{ if (event.target.closest?.('.node-popup')) graph?.draw(); },true);
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "unstuck",
+  "version": "1.0.0",
+  "private": true,
+  "description": "UnStuck story workshop: website plus a small backend that keeps the Gemini API key secret.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
