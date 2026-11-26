@@ -239,7 +239,8 @@ function prepareFrame(page) {
 }
 function sizeStage() {
   const stage = $('#mapStage'), {w} = PREVIEW[mapEdition];
-  const available = stage.parentElement.clientWidth - 2;
+  const parent = getComputedStyle(stage.parentElement);
+  const available = stage.parentElement.clientWidth - parseFloat(parent.paddingLeft) - parseFloat(parent.paddingRight) - 2;
   const scale = Math.min(1, available / w);
   const width = w * scale, height = frameHeight * scale;
   stage.style.width = width + 'px';
